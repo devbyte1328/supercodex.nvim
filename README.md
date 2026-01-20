@@ -1,2 +1,3 @@
 # supercodex.nvim
-Work In Progress. Not Finished.
+
+# This project is a work in progress. this README is currently for development purposes:

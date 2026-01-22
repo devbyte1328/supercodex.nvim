@@ -16,9 +16,7 @@ fi
 echo "Detected OS: $OS"
 echo "Detected ARCH: $ARCH"
 
-# ----------------------------
 # macOS
-# ----------------------------
 if [[ "$OS" == "Darwin" ]]; then
   if [[ "$ARCH" == "arm64" ]]; then
     BACKEND="macos-arm64"
@@ -30,10 +28,45 @@ if [[ "$OS" == "Darwin" ]]; then
   exit 0
 fi
 
-# ----------------------------
-# Linux
-# ----------------------------
+# Windows (Git Bash / MSYS / Cygwin / WSL)
+if [[ "$OS" =~ MINGW.*|MSYS.*|CYGWIN.* ]]; then
+  echo "Windows detected"
+
+  # ---- CUDA (highest priority)
+  if command -v nvidia-smi >/dev/null 2>&1; then
+    if nvidia-smi >/dev/null 2>&1; then
+      BACKEND="windows-cuda"
+      echo "CUDA detected"
+      echo "selected_backend=$BACKEND"
+      exit 0
+    fi
+  fi
+
+  # ---- CPU fallback
+  case "$ARCH" in
+    x86_64|amd64)
+      BACKEND="windows-x64"
+      ;;
+    aarch64|arm64)
+      BACKEND="windows-arm64"
+      ;;
+    *)
+      BACKEND="windows-cpu-unknown"
+      ;;
+  esac
+
+  echo "selected_backend=$BACKEND"
+  exit 0
+fi
+
+# Linux (including WSL)
 if [[ "$OS" == "Linux" ]]; then
+  # ---- Detect WSL
+  if grep -qi microsoft /proc/version 2>/dev/null; then
+    echo "WSL detected"
+    OS="WSL"
+  fi
+
   # ---- CUDA (highest priority)
   if command -v nvidia-smi >/dev/null 2>&1; then
     if nvidia-smi >/dev/null 2>&1; then
@@ -83,9 +116,7 @@ if [[ "$OS" == "Linux" ]]; then
   exit 0
 fi
 
-# ----------------------------
 # Unknown OS
-# ----------------------------
 echo "Unsupported OS: $OS"
 echo "selected_backend=cpu"
 exit 0

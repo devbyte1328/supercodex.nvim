@@ -2,7 +2,7 @@
 
 # This project is a work in progress. this README is currently for development purposes:
 
-SuperCodex is a Neovim plugin that integrates and streamlines the use of local and online LLMs for coding purposes.
+SuperCodex is a Neovim plugin that integrates and streamlines the use of local and cloud-based LLMs for coding purposes.
 
 ## Setup
 

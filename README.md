@@ -7,11 +7,11 @@ SuperCodex is a Neovim plugin that integrates, streamlines, and improves the use
 ## Setup
 
 > [!NOTE]
-> This documentation does **not** cover how to host a local language model (LLM) or how to obtain credentials for cloud-based LLM services. These steps are the responsibility of the user.
+> This documentation does **not** cover how to host an LLM or how to obtain credentials for cloud-based LLM services. These steps are the responsibility of the user.
 >
 > The plugin is built to work with an **OpenAI-compatible API endpoint**. It follows the standard OpenAI API specification for request/response formatting and authentication. As a result, **any service that implements this interface should work seamlessly** with the plugin.
 >
-> In addition, users are responsible for selecting an appropriate language model. You should look for the **latest and best-performing LLM**, especially one that scores highly on **coding and programming benchmarks**, and that you can either run locally on your own hardware, or access through a cloud-based provider.
+> In addition, users are responsible for selecting the LLM model. You should look for the **latest and best-performing LLM**, especially one that scores highly on **coding and programming benchmarks**, and that you can either run locally on your own hardware, or access through a cloud-based provider.
 >
 > Below are some useful resources to help you explore, host, or discover local LLM's:
 >

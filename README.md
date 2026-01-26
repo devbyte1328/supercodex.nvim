@@ -13,7 +13,7 @@ SuperCodex is a Neovim plugin that integrates, streamlines, and improves the use
 >
 > In addition, users are responsible for selecting an appropriate language model. You should look for the **latest and best-performing LLM**, especially one that scores highly on **coding and programming benchmarks**, and that you can either run locally on your own hardware, or access through a cloud-based provider.
 >
-> Below are some useful resources to help you explore, host, or discover localLLM's:
+> Below are some useful resources to help you explore, host, or discover local LLM's:
 >
 > https://github.com/ggml-org/llama.cpp  
 > https://github.com/open-webui/open-webui  

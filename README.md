@@ -52,7 +52,7 @@ lazy.nvim:
 
 ```
 {
-  dir = vim.fn.stdpath("config") .. "/lua/local_plugins/supercodex",
+  dir = vim.fn.stdpath("config") .. "/lua/local_plugins/supercodex.nvim",
   name = "supercodex",
   opts={}
 }

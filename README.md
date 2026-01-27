@@ -20,25 +20,57 @@ SuperCodex is a Neovim plugin that integrates, streamlines, and improves the use
 > https://huggingface.co/  
 > https://huggingface.co/TheBloke
 
+Create directory for Python virtual environments:
+
+```
+mkdir ~/.virtualenvs
+```
+
+Create virtual environment for NeoVim:
+
+```
+python -m venv ~/.virtualenvs/neovim
+```
+
+Activate the virtual environment:
+
+```
+source ~/.virtualenvs/neovim/bin/activate
+```
+
+Install pynvim:
+
+```
+pip install pynvim
+```
+
+Deactivate the virtual enviorment:
+```
+deactivate
+```
+
 ### 🌐 Live Version
+
 lazy.nvim:
 
 ```
 {
   "devbyte1328/supercodex.nvim",
-  opts={}
+  init = function()
+    vim.g.python3_host_prog = vim.fn.expand("~/.virtualenvs/neovim/bin/python")
+  end,
 }
 ```
 
 ### 💻 Local Version (for testing)
 
-Create local plugins folder:
+Create local plugins directory:
 
 ```
 mkdir -p ~/.config/nvim/lua/local_plugins
 ```
 
-Navigate to local plugins folder and Git clone this repository:
+Navigate to local plugins directory and Git clone this repository:
 
 ```
 cd ~/.config/nvim/lua/local_plugins
@@ -54,6 +86,8 @@ lazy.nvim:
 {
   dir = vim.fn.stdpath("config") .. "/lua/local_plugins/supercodex.nvim",
   name = "supercodex",
-  opts={}
+  init = function()
+    vim.g.python3_host_prog = vim.fn.expand("~/.virtualenvs/neovim/bin/python")
+  end,
 }
 ```

@@ -1,5 +1,7 @@
 import pynvim
 
+__version__ = "0.0.0-draft"
+
 @pynvim.plugin
 class SuperCodex:
     def __init__(self, nvim):

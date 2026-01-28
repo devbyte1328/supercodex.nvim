@@ -28,3 +28,5 @@ class Hello:
                 "style": "minimal",
             },
         )
+
+        self.nvim.command("startinsert")

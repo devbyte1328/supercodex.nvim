@@ -58,6 +58,7 @@ lazy.nvim:
   "devbyte1328/supercodex.nvim",
   init = function()
     vim.g.python3_host_prog = vim.fn.expand("~/.virtualenvs/neovim/bin/python")
+    vim.keymap.set("n", "<leader>s", ":WindowInputPromptCR>", { noremap = true, silent = true, desc = "Open window input prompt"})
   end,
 }
 ```
@@ -88,6 +89,7 @@ lazy.nvim:
   name = "supercodex",
   init = function()
     vim.g.python3_host_prog = vim.fn.expand("~/.virtualenvs/neovim/bin/python")
+    vim.keymap.set("n", "<leader>s", ":WindowInputPromptCR>", { noremap = true, silent = true, desc = "Open window input prompt"})
   end,
 }
 ```

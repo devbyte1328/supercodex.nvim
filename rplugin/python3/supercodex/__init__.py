@@ -11,13 +11,13 @@ class Hello:
 
     @pynvim.command("HelloWindow", nargs=0, sync=True)
     def hello_window(self):
-        input_buffer = self.nvim.api.create_buf(False, True)
+        buffer = self.nvim.api.create_buf(False, True)
 
-        self.nvim.api.buf_set_option(input_buffer, "buftype", "prompt")
-        self.nvim.funcs.prompt_setprompt(input_buffer, "> ")
+        self.nvim.api.buf_set_option(buffer, "buftype", "prompt")
+        self.nvim.funcs.prompt_setprompt(buffer, "> ")
 
         self.nvim.api.open_win(
-            input_buffer,
+            buffer,
             True,
             {
                 "relative": "editor",
@@ -28,5 +28,8 @@ class Hello:
                 "style": "minimal",
             },
         )
+
+        # ESC → close window
+        self.nvim.api.buf_set_keymap(buffer, "i", "<Esc>", "<Cmd>close<CR>", {"silent": True, "nowait": True},)
 
         self.nvim.command("startinsert")

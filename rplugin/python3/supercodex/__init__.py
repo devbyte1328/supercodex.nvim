@@ -9,8 +9,8 @@ class Hello:
     def on_start(self):
         self.nvim.out_write("Hello World! SuperCodex! Python!\n")
 
-    @pynvim.command("HelloWindow", nargs=0, sync=True)
-    def hello_window(self):
+    @pynvim.command("WindowInputPrompt", nargs=0, sync=True)
+    def window_input_prompt(self):
         buffer = self.nvim.api.create_buf(False, True)
 
         # These options and keymaps fix the buffer to allow closing the window, discarding text, and exitting the file.

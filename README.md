@@ -41,7 +41,7 @@ source ~/.virtualenvs/neovim/bin/activate
 Install pynvim:
 
 ```
-pip install pynvim
+pip install pynvim pytest pytest-mock
 ```
 
 Deactivate the virtual enviorment:

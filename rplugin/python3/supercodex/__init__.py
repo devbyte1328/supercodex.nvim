@@ -1,13 +1,9 @@
 import pynvim
 
 @pynvim.plugin
-class Hello:
+class SuperCodex:
     def __init__(self, nvim):
         self.nvim = nvim
-
-    @pynvim.autocmd("VimEnter", pattern="*", sync=False)
-    def on_start(self):
-        self.nvim.out_write("Hello World! SuperCodex! Python!\n")
 
     @pynvim.command("WindowInputPrompt", nargs=0, sync=True)
     def window_input_prompt(self):
@@ -38,6 +34,5 @@ class Hello:
                 "style": "minimal",
             },
         )
-
 
         self.nvim.command("startinsert")

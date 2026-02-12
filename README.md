@@ -41,7 +41,7 @@ source ~/.virtualenvs/neovim/bin/activate
 Install pynvim:
 
 ```
-pip install pynvim pytest pytest-mock
+pip install pynvim pytest pytest-mock requests
 ```
 
 Deactivate the virtual enviorment:
@@ -58,6 +58,9 @@ lazy.nvim:
   "devbyte1328/supercodex.nvim",
   init = function()
     vim.g.python3_host_prog = vim.fn.expand("~/.virtualenvs/neovim/bin/python")
+    vim.g.supercodex_api_key = "<API-GOES-HERE>"
+    vim.g.supercodex_url = "<URL-ENDPOINT-GOES-HERE>"
+    vim.g.supercodex_model = "<MODEL-GOES-HERE>"
     vim.keymap.set("n", "<leader>w", ":WindowInputPrompt<CR>", { noremap = true, silent = true, desc = "Open window input prompt" })
   end,
 }
@@ -89,6 +92,9 @@ lazy.nvim:
   name = "supercodex",
   init = function()
     vim.g.python3_host_prog = vim.fn.expand("~/.virtualenvs/neovim/bin/python")
+    vim.g.supercodex_api_key = "<API-GOES-HERE>"
+    vim.g.supercodex_url = "<URL-ENDPOINT-GOES-HERE>"
+    vim.g.supercodex_model = "<MODEL-GOES-HERE>"
     vim.keymap.set("n", "<leader>w", ":WindowInputPrompt<CR>", { noremap = true, silent = true, desc = "Open window input prompt" })
   end,
 }

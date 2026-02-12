@@ -1,4 +1,6 @@
 import pynvim
+import requests
+import json
 
 __version__ = "0.0.0-draft"
 
@@ -9,28 +11,39 @@ class SuperCodex:
 
     @pynvim.function("SubmitPrompt", sync=True)
     def prompt_submit(self, args):
-        text = args[0]
+        user_input = args[0]
 
-        # NeoVim makes it difficult to print the text input in a callback,
-        # so Vimscript and a NeoVim global variable are used as a bridge.
+        api_key = self.nvim.vars.get("supercodex_api_key", "")
+        url = self.nvim.vars.get("supercodex_url", "")
+        model = self.nvim.vars.get("supercodex_model", "")
 
-        # Vimscript that is used to print the text
+        payload = {
+            "model": model,
+            "messages": [{"role": "user", "content": user_input}],
+        }
+
+        response = requests.post(
+            url,
+            headers={
+                "Content-Type": "application/json",
+                "Authorization": f"Bearer {api_key}",
+            },
+            data=json.dumps(payload),
+        )
+
+        output = response.json()["choices"][0]["message"]["content"]
+
         self.nvim.command("""
         function! SuperCodexPrintMsg(timer) abort
           echomsg g:supercodex_msg
         endfunction
         """)
 
-        # Store text in NeoVim's global variables
-        self.nvim.vars["supercodex_msg"] = text
+        self.nvim.vars["supercodex_msg"] = output
 
-        # exit the window
         self.nvim.command("stopinsert")
         self.nvim.command("bwipeout!")
-
-        # print AFTER callback returns using the Vimscript function
         self.nvim.command("call timer_start(0, function('SuperCodexPrintMsg'))")
-
 
     @pynvim.command("WindowInputPrompt", nargs=0, sync=True)
     def window_input_prompt(self):

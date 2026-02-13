@@ -9,23 +9,22 @@ class SuperCodex:
     def __init__(self, nvim):
         self.nvim = nvim
 
-    @pynvim.function("OutputCode", sync=True)
-    def output_code(self, args):
+    @pynvim.function("Prompt", sync=False)
+    def prompt(self, args):
+
         cursor_row, cursor_column = self.nvim.current.window.cursor
         insertion_line = cursor_row - 1
-        self.nvim.current.buffer[insertion_line:insertion_line] = args[0].splitlines()
-
-    @pynvim.function("SubmitPrompt", sync=True)
-    def prompt_submit(self, args):
-        user_input = args[0]
 
         api_key = self.nvim.vars.get("supercodex_api_key", "")
         url = self.nvim.vars.get("supercodex_url", "")
         model = self.nvim.vars.get("supercodex_model", "")
 
+        self.nvim.command("stopinsert")
+        self.nvim.command("bwipeout!")
+
         payload = {
             "model": model,
-            "messages": [{"role": "user", "content": user_input}],
+            "messages": [{"role": "user", "content": args[0]}],
         }
 
         response = requests.post(
@@ -39,10 +38,7 @@ class SuperCodex:
 
         output = response.json()["choices"][0]["message"]["content"]
 
-        self.nvim.command("stopinsert")
-        self.nvim.command("bwipeout!")
-
-        self.output_code([output])
+        self.nvim.current.buffer[insertion_line:insertion_line] = output.splitlines()
 
     @pynvim.command("WindowInputPrompt", nargs=0, sync=True)
     def window_input_prompt(self):
@@ -60,7 +56,7 @@ class SuperCodex:
         self.nvim.api.buf_set_keymap(buffer, "n", "q", close_cmd, {"silent": True, "nowait": True})
 
         self.nvim.funcs.prompt_setprompt(buffer, "> ")
-        self.nvim.funcs.prompt_setcallback(buffer, "SubmitPrompt")
+        self.nvim.funcs.prompt_setcallback(buffer, "Prompt")
 
         self.nvim.api.open_win(
             buffer,

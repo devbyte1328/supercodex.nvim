@@ -12,15 +12,15 @@ class SuperCodex:
     @pynvim.function("Prompt", sync=False)
     def prompt(self, args):
 
+        self.nvim.command("stopinsert")
+        self.nvim.command("bwipeout!")
+
         cursor_row, cursor_column = self.nvim.current.window.cursor
         insertion_line = cursor_row - 1
 
         api_key = self.nvim.vars.get("supercodex_api_key", "")
         url = self.nvim.vars.get("supercodex_url", "")
         model = self.nvim.vars.get("supercodex_model", "")
-
-        self.nvim.command("stopinsert")
-        self.nvim.command("bwipeout!")
 
         payload = {
             "model": model,

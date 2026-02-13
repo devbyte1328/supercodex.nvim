@@ -9,6 +9,12 @@ class SuperCodex:
     def __init__(self, nvim):
         self.nvim = nvim
 
+    @pynvim.function("OutputCode", sync=True)
+    def output_code(self, args):
+        cursor_row, cursor_column = self.nvim.current.window.cursor
+        insertion_line = cursor_row - 1
+        self.nvim.current.buffer[insertion_line:insertion_line] = args[0].splitlines()
+
     @pynvim.function("SubmitPrompt", sync=True)
     def prompt_submit(self, args):
         user_input = args[0]
@@ -33,17 +39,10 @@ class SuperCodex:
 
         output = response.json()["choices"][0]["message"]["content"]
 
-        self.nvim.command("""
-        function! SuperCodexPrintMsg(timer) abort
-          echomsg g:supercodex_msg
-        endfunction
-        """)
-
-        self.nvim.vars["supercodex_msg"] = output
-
         self.nvim.command("stopinsert")
         self.nvim.command("bwipeout!")
-        self.nvim.command("call timer_start(0, function('SuperCodexPrintMsg'))")
+
+        self.output_code([output])
 
     @pynvim.command("WindowInputPrompt", nargs=0, sync=True)
     def window_input_prompt(self):

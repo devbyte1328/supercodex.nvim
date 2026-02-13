@@ -38,7 +38,7 @@ Activate the virtual environment:
 source ~/.virtualenvs/neovim/bin/activate
 ```
 
-Install pynvim:
+Install pip libraries:
 
 ```
 pip install pynvim pytest pytest-mock requests

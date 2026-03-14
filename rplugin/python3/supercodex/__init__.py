@@ -1,4 +1,6 @@
 import pynvim
+import requests
+import json
 
 __version__ = "0.0.0-draft"
 
@@ -7,30 +9,36 @@ class SuperCodex:
     def __init__(self, nvim):
         self.nvim = nvim
 
-    @pynvim.function("SubmitPrompt", sync=True)
-    def prompt_submit(self, args):
-        text = args[0]
+    @pynvim.function("Prompt", sync=False)
+    def prompt(self, args):
 
-        # NeoVim makes it difficult to print the text input in a callback,
-        # so Vimscript and a NeoVim global variable are used as a bridge.
-
-        # Vimscript that is used to print the text
-        self.nvim.command("""
-        function! SuperCodexPrintMsg(timer) abort
-          echomsg g:supercodex_msg
-        endfunction
-        """)
-
-        # Store text in NeoVim's global variables
-        self.nvim.vars["supercodex_msg"] = text
-
-        # exit the window
         self.nvim.command("stopinsert")
         self.nvim.command("bwipeout!")
 
-        # print AFTER callback returns using the Vimscript function
-        self.nvim.command("call timer_start(0, function('SuperCodexPrintMsg'))")
+        cursor_row, cursor_column = self.nvim.current.window.cursor
+        insertion_line = cursor_row - 1
 
+        api_key = self.nvim.vars.get("supercodex_api_key", "")
+        url = self.nvim.vars.get("supercodex_url", "")
+        model = self.nvim.vars.get("supercodex_model", "")
+
+        payload = {
+            "model": model,
+            "messages": [{"role": "user", "content": args[0]}],
+        }
+
+        response = requests.post(
+            url,
+            headers={
+                "Content-Type": "application/json",
+                "Authorization": f"Bearer {api_key}",
+            },
+            data=json.dumps(payload),
+        )
+
+        output = response.json()["choices"][0]["message"]["content"]
+
+        self.nvim.current.buffer[insertion_line:insertion_line] = output.splitlines()
 
     @pynvim.command("WindowInputPrompt", nargs=0, sync=True)
     def window_input_prompt(self):
@@ -48,7 +56,7 @@ class SuperCodex:
         self.nvim.api.buf_set_keymap(buffer, "n", "q", close_cmd, {"silent": True, "nowait": True})
 
         self.nvim.funcs.prompt_setprompt(buffer, "> ")
-        self.nvim.funcs.prompt_setcallback(buffer, "SubmitPrompt")
+        self.nvim.funcs.prompt_setcallback(buffer, "Prompt")
 
         self.nvim.api.open_win(
             buffer,

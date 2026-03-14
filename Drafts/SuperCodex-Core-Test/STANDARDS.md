@@ -606,15 +606,7 @@ immutability can improve code readability with the additional expression of
 
 intent. For this reason, developers are encouraged to experiment with fake
 
-immutables. Inside the working directory, create a hidden Python script named
-
-`.Immutables.py`. This script will store and expose these fake immutable
-
-values. To import fake immutable values, import `Standards.py` in the target
-
-script using `from Standards import *`. Pass the fake immutable reference to
-
-`Python_load_immutables()` and assign the returned value to the constant.
+immutables.
 
 #### While Function
 
@@ -641,7 +633,7 @@ body with exactly one level of indentation.
 
     `if` for the primary intended data manipulation.
 
-    `elif` for secondary or exceptional cases.
+    `elif` for following cases.
 
     `else` only when absolutely necessary.
 
@@ -764,8 +756,13 @@ when introducing multi-word solution definitions (e.g., `"IDR"` for
 
 ### MAY ❗
 
-- Use Python Property Type: "Immutables"
+- Create `.Immutables.py` inside the working directory to store and expose fake
 
+    immutables, To expose, use `from Standards import *` in target script, Pass
+
+    the fake immutable reference to `Python_load_immutables()` and assign the
+
+    returned value to the constant.
 
 
 

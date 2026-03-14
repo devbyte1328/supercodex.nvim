@@ -6,9 +6,9 @@ Author: devbyte1328
 
 Document: STANDARDS.md
 
-Version: 0.1.0
+Version: 0.1.3
 
-Last Updated: 14-03-2026
+Last Updated: 15-03-2026
 
 ---
 
@@ -34,11 +34,13 @@ disagreement, and endless reinvention. Understanding everything is impossible.
 
 This document makes a simpler choice. It discards the majority of solutions and
 
-bases everything on a single core concept, functions. It is not negotiable. It
+bases everything on three core concepts, variables, functions, and
 
-is set. The adherent must revert to first principles. These standards will not
+initialzations. It is not negotiable. It is set. The adherent must revert to
 
-appeal to everyone, and they are not intended to.
+first principles. These standards will not appeal to everyone, and they are not
+
+intended to.
 
 ---
 
@@ -108,25 +110,33 @@ the "house is tidy."
 
 ## Definitions
 
-### 𝐅𝐮𝐧𝐜𝐭𝐢𝐨𝐧
-
-The core concept in software technology, it refers to the most basic form of
-
-code.
-
 ### 𝐈𝐧𝐢𝐭𝐢𝐚𝐥𝐢𝐳𝐞
 
-The core function that begins the compilation of functions passed into the
+The core function that begins the compilation of functions passed into its
 
 parameters.
 
-### 𝐓𝐚𝐠 𝐋𝐢𝐬𝐭
+### 𝐅𝐮𝐧𝐜𝐭𝐢𝐨𝐧
 
-Formerly known in Python as the data type *"Dictionary"*, a Tag List is a
+The most basic unit of code. It can be written in a terminal or in scripts for
+
+initialization.
+
+### Base-Script
+
+A base script is a Python script that provides reusable variables and functions
+
+that are imported and used by other scripts within a project. It is not
+
+intended to be executed directly as the primary entry point of the program.
+
+### 𝐓𝐚𝐠-𝐋𝐢𝐬𝐭
+
+Formerly known in Python as the data type *"Dictionary"*, a Tag-List is a
 
 mutable, unordered collection of items, where each item consists of a unique
 
-tag and a corresponding value. Tag Lists allow fast retrieval of values based
+tag and a corresponding value. Tag-Lists allow fast retrieval of values based
 
 on their tags.
 
@@ -261,7 +271,7 @@ Connectors is used.
 
 - Uppercase every letter in any name that contains a multi-word abbreviation.
 
-- Treat multi-word abbreviation names as a single Dataist Categorizationist
+- Treat multi-word abbreviation names as a single Dataist-Categorizationist
 
     word type.
 
@@ -289,9 +299,13 @@ Connectors is used.
 
 - Use `of` to base a Functionist word group.
 
+- Have the name surpess 79 characters.
+
 ### MAY ❗
 
-- Use any number of words necessary to sufficiently describe a variable or function.
+- Use any number of words necessary to sufficiently describe a variable or
+
+function (under 79 characters).
 
 ### Examples
 
@@ -359,49 +373,51 @@ six_words = "LLM_python_scripts_prefixed_with_line_numbers"
 Correct ✅
 ```
 .
+...
 ├── Documentations
 │   ├── STANDARDS.md
 │   └── USEFUL_RESOURCES.md
 ├── .git
 ├── .gitignore
 ├── .Immutables.py
-├── LICENSE
+...
 ├── Logs
 │   ├── LLM.log
 │   └── Main.log
 ├── Main.py
-├── __pycache__
+...
 ├── README.md
 ├── Scripts.pip
 ├── Standards.py
 ├── Scripts
 │   ├── Logs.py
 │   └── System_Prompts.py
-└── Virtual_Environment
+...
 ```
 
 Wrong ❌
 ```
 .
+...
 ├── doc
 │   ├── standards.md
 │   └── ur.md
 ├── .git
 ├── .gitignore
 ├── .immutables.py
-├── LICENSE
+...
 ├── logs
 │   ├── llm.log
 │   └── main.log
 ├── init.py
-├── __pycache__
+...
 ├── readme.md
 ├── requirements.txt
 ├── standards.py
 ├── utils
 │   ├── logs.py
 │   └── system_prompts.py
-└── venv
+...
 ```
 
 ---
@@ -426,7 +442,7 @@ at the top of the file: `from Standards import *`
 
 **Template**
 
-<details><summary>🔽 CLICK TO EXPAND CODE... 🔽</summary>
+<details><summary>🔽 CLICK TO EXPAND SCRIPT... 🔽</summary>
 
 ```
 
@@ -625,23 +641,21 @@ script, use `from Standards import *` all the way at the top. Pass the fake
 
 immutable reference to `Python_load_immutables()` and assign the returned value
 
-to the constant. Prefix every constant in `.Immutables.py` with `IMMUTABLE`.
-
-`.Immutables.py` must contain two empty lines above and two empty lines below
-
-the script. Uppercase the entire `.Immutables.py`. Do not include empty lines
-
-between code lines in `.Immutables.py`.
-
+to the constant.
 
 #### While Function
 
 Before using a `while` function, initialize a `loop` counter variable. Use this
 
-variable in the loop condition. Increment the counter at the end of the loop
+counter in the while function condition. Place variables used exclusively by
 
-body with exactly one level of indentation.
+the while function between the counter initialization and the `while`
 
+statement. This visually groups them with the while function and indicates they
+
+are only relevant to that while function. Increment the `loop` counter at the
+
+end of the while function body using exactly one level of indentation.
 
 ### MUST ❗
 
@@ -663,7 +677,7 @@ body with exactly one level of indentation.
 
 - Have the working directory contain the files, "STANDARDS.md", "Standards.py",
 
-    "README.md", "Main.py", "Dockerfile", ".git", ".gitignore"
+    "README.md", "Main.py", ".git", ".gitignore"
 
 - Apply compatibility workarounds to imported technologies so they comply with
 
@@ -693,14 +707,13 @@ body with exactly one level of indentation.
 
 - Only code with Python data types: "Integers", "Floats", "Strings",
 
-    "Booleans", "Lists", and "Tag Lists".
+    "Booleans", "Lists", and "Tag-Lists".
 
 - Only code with Python Functions: "Imports", "Built-in", "Base-script",
 
     "Whiles", "Ifs", "Elifs", "Elses", "Ins", "Not Ins", "Trys",
     
     "Excepts", "Finallys", and "Raises".
-
 
 - Have `README.md` at the very least include initialization instructions
 
@@ -710,9 +723,7 @@ body with exactly one level of indentation.
 
     in a high-level language for public solutions.
 
-- Ignore the non-standardized names of automatically generated filesystems and
-
-    codebases.
+- Ignore the non-standardized names of automatically generated filesystems.
 
 - Use `/` when defining filesystem path values.
 
@@ -728,7 +739,13 @@ body with exactly one level of indentation.
 
 - Version control Python scripts imported with `pip` in `Scripts.pip`.
 
+- Uppercase the entire `.Immutables.py`.
 
+- Have `.Immutables.py` contain two empty lines above and two empty lines below
+
+    the script.  
+
+- Prefix every constant in `.Immutables.py` with `IMMUTABLE`.
 
 ### MUST NOT ❗
 
@@ -746,25 +763,28 @@ body with exactly one level of indentation.
 
 - Use the legacy Python functions: "Classes", "Frozen Dataclasses", "Tuples",
 
-    "Object Methods", "Lambdas", "For Loops", "Is"
+    "Object Methods", "Lambdas", "For Loops", "Is".
 
 - Nest While functions that isn't Main.
 
-- Pass functions into functions
+- Pass functions into functions.
 
-- Have functions returns functions
+- Have functions returns functions.
 
-- Use Dunders
+- Use Dunders.
 
-- Using `not` before `in`
+- Using `not` before `in`.
 
 - Modify the base of the imported technology to enforce these standards.
+
+- Include empty lines between code lines in `.Immutables.py`.
 
 ### MAY ❗
 
 - `Standards.py` ca be placed either in the working directory or inside the
     `Documentations/` directory.
 
+- Have working directory include "Dockerfile" to address compatibilities.
 
 ### Examples
 
@@ -829,7 +849,6 @@ string_of_loop_for_IDR = Python_string(loop_for_IDR + 1)
 # "+ 1" because of Python indexing...
 ```
 
-
 Wrong ❌
 
 ```
@@ -859,5 +878,30 @@ for loop in range(last_of_line_number):
     if script[loop] == "\n":
         line_number += 1
 ```
+
+Correct ✅
+```
+.
+...
+├── .git
+├── .gitignore
+...
+├── LICENSE
+...
+├── __pycache__
+...
+└── Virtual_Environment
+```
+
+Wrong ❌
+```
+.
+...
+├── License
+...
+└── venv
+```
+
+---
 
 

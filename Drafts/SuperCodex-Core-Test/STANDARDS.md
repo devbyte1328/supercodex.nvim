@@ -6,7 +6,7 @@ Author: devbyte1328
 
 Document: STANDARDS.md
 
-Version: 0.1.0
+Version: 0.1.1
 
 Last Updated: 14-03-2026
 
@@ -663,7 +663,7 @@ body with exactly one level of indentation.
 
 - Have the working directory contain the files, "STANDARDS.md", "Standards.py",
 
-    "README.md", "Main.py", "Dockerfile", ".git", ".gitignore"
+    "README.md", "Main.py", ".git", ".gitignore"
 
 - Apply compatibility workarounds to imported technologies so they comply with
 
@@ -750,13 +750,13 @@ body with exactly one level of indentation.
 
 - Nest While functions that isn't Main.
 
-- Pass functions into functions
+- Pass functions into functions.
 
-- Have functions returns functions
+- Have functions returns functions.
 
-- Use Dunders
+- Use Dunders.
 
-- Using `not` before `in`
+- Using `not` before `in`.
 
 - Modify the base of the imported technology to enforce these standards.
 
@@ -765,6 +765,7 @@ body with exactly one level of indentation.
 - `Standards.py` ca be placed either in the working directory or inside the
     `Documentations/` directory.
 
+- Have working directory include "Dockerfile" to address compatibilities.
 
 ### Examples
 

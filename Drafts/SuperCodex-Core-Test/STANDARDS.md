@@ -1,11 +1,12 @@
 
+
 ---
 
 Author: devbyte1328
 
 Document: STANDARDS.md
 
-Version: 0.0.33
+Version: 0.0.34
 
 Last Updated: 14-03-2026
 
@@ -273,13 +274,6 @@ Connectors is used.
 
 #### MAY ❗
 
-- Pick any word amount to sufficiently describe variable/function.
-
-- Have functionist group type with the second word `return` to indicate it's
-function returns data.
-
-#### MAY ❗
-
 - Use any number of words necessary to sufficiently describe a variable or function.
 
 #### Examples
@@ -287,6 +281,9 @@ function returns data.
 Correct ✅
 
 ```
+From Standards import *
+import os
+
 from Scripts.Logs import *
 from Scripts.System_Prompts import *
 
@@ -317,7 +314,10 @@ eight_words = "directory_path_of_python_scripts_with_prefix_of_line_numbers_for_
 ```
 
 Wrong ❌
+
 ```
+import os
+
 from utils.logs import *
 from utils.system_prompts import *
 
@@ -337,62 +337,6 @@ two_words = "Script_Path"
 three_words = "LLM_Script_Path"
 four_words = "LLM_python_script_path"
 six_words = "LLM_python_scripts_prefixed_with_line_numbers"
-```
-
----
-## Working Directory Standards 📋
-Includes standards for Filsystems and codebases.
-> [!NOTE]
-> These rules are exceptions to human text and code comments.
-
-### Adherent Requirements
-
-#### MUST ❗
-- Ignore the non-standardized names of automatically generated filesystems and
-codebases.
-- Name variables and functions using **capitalized multi-word abbreviations**
-when introducing multi-word solution definitions (e.g., `"IDR"` for
-`"instruction_dependency_resolutions"`).
-- Use `/` when defining filesystem path values.
-- For filesystem names:
-  - Capitalize the first letter of each major word.
-  - Use lowercase for minor words.
-  - Separate all words with underscores.
-- Fully capitalize Markdown filenames.
-- Version-control Python scripts that are imported with `pip`.
-- Use the file `Scripts.pip` for storing pip-managed Python scripts.
-
-#### MUST NOT ❗
-- Use single-word abbreviations (e.g., `"doc"` for `"documentations"`).
-- Use `\` when defining filesystem path values. Docker resolves OS runtime compatibility issues, making `/` the preferred standard.
-- Leave Python scripts imported with `pip` in rolling release.
-- Use `requirements.txt` for storing pip-managed Python scripts.
-
-#### MAY ❗
-- Avoid using the same type of connector more than once within the same name.
-
-### Examples
-
-Correct ✅
-```
-PATH_OF_STE = f"{PATH_OF_HOME_USER}/Models/all-MiniLM-L6-v2"
-
-instruction = ""
-
-IDR = []
-
-instruction_dependancies = ["abc", "def", "ghi"]
-```
-
-Wrong ❌
-```
-PATH_OF_SENTENCE_TRANSFORMER_ENCODER = os.path.expanduser("~\Models\all-MiniLM-L6-v2")
-
-Instruction = ""
-
-instruction_dependancy_resolutions = []
-
-ID = ["abc", "def", "ghi"]
 ```
 
 Correct ✅
@@ -437,80 +381,50 @@ Wrong ❌
 ├── readme.md
 ├── requirements.txt
 ├── standards.py
-├── libs
+├── utils
 │   ├── logs.py
 │   └── system_prompts.py
 └── venv
 ```
 
-#### MUST ❗
-The following files **must exist** in the working directory:
-
-- `Standards.py`
-- `README.md`
-- `Main.py`
-- `Dockerfile`
-- `.git`
-- `.gitignore`
-
-`Standards.py` may be placed either in the working directory or inside the
-`Documentations/` directory.
-
-`Main.py` must serve as the **entry point script**.
-
-`Main.py` must also be the location where the **public API is declared**.
-
-`Main.py` and `README.md` must both include the **solution version**.
-
-Private solutions must include, at minimum, initialization instructions in
-`README.md` written in **hyper-technical language**.
-
-Public solutions must include initialization instructions in `README.md`
-written in **high-level language**.
-
 ---
 
-## Python Standards.py 📋
+## Working Directory Standards 📋
 
-`Standards.py` acts as the **compatibility layer for the standards**.  
-It is a crude but effective method of redefining Python behavior so that it
-conforms to the standards defined in this document.
-
-When writing code or importing scripts, **first update the compatibility layer**
-to include the necessary corrections.
-
-To access the standardized definitions in a target script, include the
-following at the top of the file:
-
-```
-from Standards import *
-```
-
-#### MUST ❗
-
+Filsystems and Codebases.
 > [!NOTE]
-> Exception: `importlib.util`
+> Exception to code comments.
 
-- `Standards.py` must contain **two empty lines above and below the script**.
-- Each **script import section** must contain **two empty lines above and below**.
-- Each **function** must contain **one empty line above and below**.
-- Functions must **not contain empty lines internally**.
-- Each function must **begin with the name of the base script being standardized**.
+### Python `Standards.py`
+
+`Standards.py` acts as the compatibility layer for the standards, a crude and
+
+brutish way of applying them to Python. When writing code or importing scripts,
+
+first update the compatibility layer to include any necessary corrections. To
+
+access the standardized definitions in a target script, include the following
+
+at the top of the file: `from Standards import *`
 
 ### Template for `Standards.py`
+
+<details>
+<summary>Standards.py</summary>
 
 ```
 
 
 # Python
 
-integer = int
-string = str
-title_list = dict
+Python_data_type_integer = int
+Python_data_type_float = float
+Python_data_type_string = str
+Python_data_type_boolean = bool
+Python_data_type_list = list
+Python_data_type_tag_list = dict
 
 import importlib.util
-
-
 def Python_load_immutables(immutable_data):
     spec = importlib.util.spec_from_file_location(
         "immutables",
@@ -521,14 +435,26 @@ def Python_load_immutables(immutable_data):
     immutable_data = getattr(immutables, immutable_data)
     return immutable_data
 
+def Python_print(any_value):
+    print(any_value)
 
 def Python_integer(any_value):
     return int(any_value)
-
-
+    
+def Python_float(any_value):
+    return float(any_value)
+    
 def Python_string(any_value):
     return str(any_value)
+    
+def Python_boolean(any_value):
+    return bool(any_value)
+    
+def Python_list(any_value):
+    return list(any_value)
 
+def Python_tag_list(any_value):
+    return dict(any_value)
 
 def Python_fstring(string_value):
     loop = 0
@@ -545,7 +471,9 @@ def Python_fstring(string_value):
                     text_for_output += string_value[loop:loop + 1]
                 elif string_value[loop:loop + 1] == "'":
                     was_single_quotes_found = True
-                    temporary_hold_of_single_quotes += string_value[loop:loop + 1]
+                    temporary_hold_of_single_quotes += (
+                        string_value[loop:loop + 1]
+                    )
             elif was_single_quotes_found == True:
                 if string_value[loop:loop + 1] != "'":
                     text_for_output += temporary_hold_of_single_quotes
@@ -553,7 +481,9 @@ def Python_fstring(string_value):
                     temporary_hold_of_single_quotes = ""
                     was_single_quotes_found = False
                 elif string_value[loop:loop + 1] == "'":
-                    temporary_hold_of_single_quotes += string_values[loop:loop + 1]
+                    temporary_hold_of_single_quotes += (
+                        string_values[loop:loop + 1]
+                    )
         elif was_f_string_divider_found == True:
             text_for_output = text_for_output[:-1]
             was_double_quotes_found = False
@@ -562,30 +492,34 @@ def Python_fstring(string_value):
         loop += 1
     return text_for_output[1:-1]
 
-
-def Python_titles_list(title_list):
-    return list(title_list)
-
-
 def Python_read_file(FILE_PATH):
     open_file = open(FILE_PATH, "r").read()
     open(FILE_PATH).close()
     return open_file
 
-
+def Python_read_binary_of_file(FILE_PATH):
+    open_file = open(FILE_PATH, "rb").read()
+    open(FILE_PATH).close()
+    return open_file
+    
 def Python_write_file(FILE_PATH, STRING_VALUE):
     open(FILE_PATH, "a").write(STRING_VALUE)
     open(FILE_PATH).close()
 
+def Python_write_binary_of_file(FILE_PATH, STRING_VALUE):
+    open(FILE_PATH, "ab").write(STRING_VALUE)
+    open(FILE_PATH).close()
 
 def Python_overwrite_file(FILE_PATH, STRING_VALUE):
     open(FILE_PATH, "w").write(STRING_VALUE)
     open(FILE_PATH).close()
 
+def Python_overwrite_binary_of_file(FILE_PATH, STRING_VALUE):
+    open(FILE_PATH, "wb").write(STRING_VALUE)
+    open(FILE_PATH).close()
 
-def Python_type(ANY_VALUE)
+def Python_type(ANY_VALUE):
     return type(ANY_VALUE)
-
 
 def Python_length(ANY_VALUE):
     return len(ANY_VALUE)
@@ -593,77 +527,97 @@ def Python_length(ANY_VALUE):
 
 import os
 
+def OS_exit_Main():
+    os.sys.exit()
 
-def OS_initalize_directory(directory_path):
+def OS_environment(ANY_TAG, ANY_VALUE):
+    os.environ[ANY_TAG] = ANY_VALUE
+
+def OS_initialize_directory(directory_path):
     os.makedirs(directory_path)
 
+def OS_return_boolean_filesystem(filesystem_path):
+    return os.path.exists(filesystem_path)
 
-def OS_return_boolean_of_directory_initialization(directory_path):
-    return os.path.isdir(directory_name)
+def OS_return_boolean_file(file_path):
+    return os.path.isfile(file_path) 
 
+def OS_return_boolean_directory(directory_path):
+    return os.path.isdir(directory_path)
 
-def OS_list_files_in_directory(directory_path):
+def OS_return_list_of_directory_files(directory_path):
     return os.listdir(directory_path)
-
 
 def OS_delete_file(file_path):
     os.remove(file_path)
 
-
 def OS_return_path_of_home_user():
     return os.path.expanduser("~")
 
+def OS_return_absolute_path(relative_path_of_filesystem):
+    return os.path.abspath(relative_path_of_filesystem)
+
+def OS_return_resolution_path_of_symbolic_link(relative_path_of_symbolic_link):
+    return os.path.realpath(relative_path_of_symbolic_link)
+
+def OS_return_function_parameters():
+    return os.sys.argv
+
+
+import subprocess
+
+def SubProcess_Initialize(functions):
+    subprocess.run(functions, shell=True)
+
+def SubProcess_Parallel_Initialize(functions):
+    subprocess.Popen(functions, shell=True)
+
+
+import signal
+
+def Signal_signal(signal_type, function):
+    signal.signal(signal_type, function)
+
+def Signal_return_signal_for_interruption():
+    return signal.SIGINT
+
+def Signal_return_signal_for_termination():
+    return signal.SIGTERM
+
 
 ```
+</details>
 
-## Python Immutables 📋
+### Python Immutables
 
-`Tuples` and `Frozen Dataclasses` are **not recognized as immutable types**
-under these standards, and their use is **forbidden** under the *Python Code
-Rules*.
+`Tuples` and `Frozen Dataclasses` are not recognized as immutable types under
 
-At the time of writing, Python does not provide a true immutable data type.
+these standards, and their is forbidden. At the time of writing, Python does
 
-However, the concept of immutability can improve code readability by clearly
-expressing intent. Therefore, developers are encouraged to experiment with
-**fake immutables** (yes, seriously).
+not provide a true immutable data type. However, the concept of immutability
 
-Inside the working directory, create a file named:
+can improve code readability by clearly expressing intent. For this reason,
 
-```
-.Immutables.py
-```
+developers are encouraged to experiment with "fake immutables". Instructions
 
-This file will store and expose the fake immutable values.
+for using "fake immutables" are provided in the section "Python
 
-Instructions for using `.Immutables.py` are provided in the section
-**Python .Immutables.py**.
+.Immutables.py".
 
+### Python `.Immutables.py`
 
+Inside the working directory, create hidden python script `.Immutables.py`.
 
-## Python .Immutables.py
+This file will store and expose these fake immutable values.
 
-To support fake immutables, the data type will simply be referred to as
-**immutables**.
+To import does immutable value import `Standards.py` in the target script
+with `from Standards import *`.
 
-#### MUST ❗
+Pass the immutable reference into `Python_load_immutables()`, Assign the
+returned value to the constant.
 
-- `.Immutables.py` must contain **two empty lines above and below the script**.
-- The **Variables Naming Framework** must be followed.
-- The **entire script must be capitalized**.
-- There must be **no empty lines between immutables**.
 
 To import immutable values:
-
-1. Ensure `Standards.py` has been imported using:
-
-```
-from Standards import *
-```
-
-2. Initialize the constant with the prefix `IMMUTABLE`.
-3. Pass the immutable reference into `load_immutables()`.
-4. Assign the returned value to the constant.
 
 ### Example
 
@@ -678,13 +632,15 @@ LIST_OF_ERROR_CRITICAL = ["ERROR", "CRITICAL"]
 
 ```
 
-`Scripts/Log.py`
+`Scripts/Log.py` ("Main.py" initializes "Log.py")
 
 ```
 from Standards import *
 
-IMMUTABLE_LIST_DEBUG = load_immutables("LIST_DEBUG")
-IMMUTABLE_LIST_OF_ERROR_CRITICAL = load_immutables("LIST_OF_ERROR_CRITICAL")
+
+IMMUTABLE_LIST_DEBUG = Python_load_immutables("LIST_DEBUG")
+IMMUTABLE_LIST_OF_ERROR_CRITICAL = Python_load_immutables("LIST_OF_ERROR_CRITICAL")
+
 
 LIST_OF_LOG_TYPES = (
     IMMUTABLE_LIST_DEBUG
@@ -693,40 +649,140 @@ LIST_OF_LOG_TYPES = (
 )
 ```
 
-## Python Code Standards 📋
-
-### Adherent Requirements
 
 #### MUST ❗
 
-Apply compatibility workarounds to imported technologies so they comply with
-these standards.  
-(In Python, this is implemented through `Standards.py`.)
+- Apply compatibility workarounds to imported technologies so they comply with
+    these standards (In Python, this is implemented through `Standards.py`.)
 
-Maintain a **maximum line length of 79 characters**.
+- Maintain a maximum line length of 79 characters.
 
-If a variable name causes a line to exceed this limit, **remove words from the
-variable name**.
+- If a variable name causes a line to exceed this limit, remove words from the
+    variable name.
 
-Code using only references to the **standardized Python definitions**.
+- Code using only references to the standardized Python definitions.
 
-```
-Python Data Types:
-"Integers", "Floats", "Strings", "Booleans", "Lists", and "Tag Lists"
+- Only code with Python data types: "Integers", "Floats", "Strings", "Booleans", "Lists", and "Tag Lists".
 
-Python Naming Convention:
-"Constants"
+- Only code with Python Functions: "Imports", "Built-in", "Base-script",
+    "Whiles", "Ifs", "Elifs", "Elses", "Ins", "Not Ins", "Trys",
+    "Excepts", "Finallys", and "Raises".
 
-Python Property Type:
-"Immutables"
 
-Python Functions:
-"Imports", "Built-in", "Base-script", "Whiles", and
-"Condition Functions"
-("Ifs", "Elifs", "Elses", "Ins", "Not Ins", "Trys", "Excepts", "Finallys", and "Raises")
-```
 
-### Python Indexing Standard 📋
+
+
+
+            - Refer to fake immutables simply as immutables
+            - prefix the every constant in `.Immutables.py` with `IMMUTABLE`.
+            - `.Immutables.py` must contain two empty lines above and below the script.
+            - Uppercase the entire `.Immutables.py`.
+            - No empty lines between immutables.
+
+
+
+
+
+
+
+            > [!NOTE]
+            > Exception: `importlib.util`
+
+            - `Standards.py` must contain **two empty lines above and below the script**.
+            - Each **script import section** must contain **two empty lines above and below**.
+            - Each **function** must contain **one empty line above and below**.
+            - Functions must **not contain empty lines internally**.
+            - Each function must **begin with the name of the base script being standardized**.
+
+
+
+
+
+            The following files **must exist** in the working directory:
+
+            - `Standards.py`
+            - `README.md`
+            - `Main.py`
+            - `Dockerfile`
+            - `.git`
+            - `.gitignore`
+
+            `Standards.py` may be placed either in the working directory or inside the
+            `Documentations/` directory.
+
+            `Main.py` must serve as the **entry point script**.
+
+            `Main.py` must also be the location where the **public API is declared**.
+
+            `Main.py` and `README.md` must both include the **solution version**.
+
+            Private solutions must include, at minimum, initialization instructions in
+            `README.md` written in **hyper-technical language**.
+
+            Public solutions must include initialization instructions in `README.md`
+            written in **high-level language**.
+
+- Ignore the non-standardized names of automatically generated filesystems and
+codebases.
+- Name variables and functions using **capitalized multi-word abbreviations**
+when introducing multi-word solution definitions (e.g., `"IDR"` for
+`"instruction_dependency_resolutions"`).
+- Use `/` when defining filesystem path values.
+- For filesystem names:
+  - Capitalize the first letter of each major word.
+  - Use lowercase for minor words.
+  - Separate all words with underscores.
+- Fully capitalize Markdown filenames.
+- Version-control Python scripts that are imported with `pip`.
+- Use the file `Scripts.pip` for storing pip-managed Python scripts.
+
+#### MUST NOT ❗
+- Use single-word abbreviations (e.g., `"doc"` for `"documentations"`).
+- Use `\` when defining filesystem path values. Docker resolves OS runtime compatibility issues, making `/` the preferred standard.
+- Leave Python scripts imported with `pip` in rolling release.
+- Use `requirements.txt` for storing pip-managed Python scripts.
+- Use the Imports: "pathlib", "sys", "shutil"
+
+
+            Do **not modify the base implementation of the imported technology** to
+            enforce these standards.
+
+            Example: modifying **CPython** itself to comply with these standards.
+
+            > [!NOTE]
+            > Exceptions apply only to:
+            > - `Standards.py`
+            > - Python data type redefinitions
+            > - Python condition functions
+
+            The following legacy Python constructs **must not be used**:
+
+            ```
+            Classes
+            Frozen Classes
+            Tuples
+            Object Methods
+            Lambdas
+            For Loops
+            Is (comparison operator)
+            Nested While Loops
+            Functions within functions
+            Functions that return functions
+            Dunder methods
+            Using "not" before "in"
+            ```
+
+#### MAY ❗
+- Use Python Property Type: "Immutables"
+
+
+---
+
+
+
+
+
+### Python Indexing Standard
 
 If an index is corrected using `+1` or `-1` because Python indexing starts
 at `0`, a comment must be added explaining the correction.
@@ -738,7 +794,7 @@ string_of_loop_for_IDR = Python_string(loop_for_IDR + 1)
 # "+ 1" because of Python indexing...
 ```
 
-### Python While Function Standard 📋
+### Python While Function Standard
 
 `break` **may be used** to exit the loop.
 
@@ -752,7 +808,7 @@ while loop < ...:
     loop += 1
 ```
 
-### Python Condition Function Standard 📋
+### Python Condition Function Standard
 
 - **If** — used for the primary intended data manipulation.
 - **Elif** — used for secondary or exceptional cases.
@@ -765,37 +821,4 @@ A reference list of Python exceptions can be found here:
 https://docs.python.org/3/library/exceptions.html#exception-hierarchy
 ```
 
-#### MUST NOT ❗
 
-Do **not modify the base implementation of the imported technology** to
-enforce these standards.
-
-Example: modifying **CPython** itself to comply with these standards.
-
-> [!NOTE]
-> Exceptions apply only to:
-> - `Standards.py`
-> - Python data type redefinitions
-> - Python condition functions
-
-The following legacy Python constructs **must not be used**:
-
-```
-Classes
-Frozen Classes
-Tuples
-Object Methods
-Lambdas
-For Loops
-Is (comparison operator)
-Nested While Loops
-Functions within functions
-Functions that return functions
-Dunder methods
-Using "not" before "in"
-```
-
-MUST NOT USE IMPORTS:
-pathlib
-sys
-shutil

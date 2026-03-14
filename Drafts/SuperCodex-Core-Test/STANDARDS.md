@@ -643,21 +643,19 @@ immutable reference to `Python_load_immutables()` and assign the returned value
 
 to the constant.
 
+#### While Function
 
-#### While Loop
+Before using a `while` function, initialize a `loop` counter variable. Use this
 
-Before using a `while` loop, initialize a `loop` counter variable. Use this
+counter in the while function condition. Place variables used exclusively by
 
-counter in the loop condition. Place variables used exclusively by the loop
+the while function between the counter initialization and the `while`
 
-between the counter initialization and the `while` statement. This visually
+statement. This visually groups them with the while function and indicates they
 
-groups them with the loop and indicates they are only relevant to that loop.
+are only relevant to that while function. Increment the `loop` counter at the
 
-Increment the `loop` counter at the end of the loop body using exactly one
-
-level of indentation.
-
+end of the while function body using exactly one level of indentation.
 
 ### MUST ❗
 
@@ -765,7 +763,7 @@ level of indentation.
 
 - Use the legacy Python functions: "Classes", "Frozen Dataclasses", "Tuples",
 
-    "Object Methods", "Lambdas", "For Loops", "Is"
+    "Object Methods", "Lambdas", "For Loops", "Is".
 
 - Nest While functions that isn't Main.
 
@@ -851,7 +849,6 @@ string_of_loop_for_IDR = Python_string(loop_for_IDR + 1)
 # "+ 1" because of Python indexing...
 ```
 
-
 Wrong ❌
 
 ```
@@ -904,4 +901,7 @@ Wrong ❌
 ...
 └── venv
 ```
+
+---
+
 

@@ -6,7 +6,7 @@ Author: devbyte1328
 
 Document: STANDARDS.md
 
-Version: 0.0.34
+Version: 0.0.35
 
 Last Updated: 14-03-2026
 
@@ -190,8 +190,6 @@ Any protocol documentation.
 https://rfc-editor.org/rfc/rfc2119
 ```
 
-For coding styles and/or conventions use
-
 ### Python PEP 8
 
 Coding styles and/or conventions, except for parts that are overwritten or forbidden.
@@ -203,6 +201,15 @@ https://peps.python.org/pep-0008
 ---
 
 ## Naming Framework Standard
+
+> [!NOTE]
+> In the following standard, four terms are used to categorize different types of
+> words and groups of words. These terms are made up and exist only as references
+> for the categories, so don’t read too much into them. They slightly hint at how
+> each category is used, but they are not meant to carry deeper meaning beyond
+> that. Sorry if this is confusing, I didn’t have better terms to use for this
+> part of the document. The terms are: "Functionist", "Dataist",
+> "Categorizationist", and "Researchist".
 
 ### Description
 
@@ -716,9 +723,12 @@ when introducing multi-word solution definitions (e.g., `"IDR"` for
 - Fully capitalize Markdown filenames.
 - Version-control Python scripts that are imported with `pip`.
 - Use the file `Scripts.pip` for storing pip-managed Python scripts.
+- Use `Virtual_Environment` to name the Python virtual environment.
 
 ### MUST NOT ❗
 
+- Use the file `requirements.txt` for storing pip-managed Python scripts. 
+- Use `venv` to name the Python virtual environment.
 - Use single-word abbreviations (e.g., `"doc"` for `"documentations"`).
 - Use `\` when defining filesystem path values. Docker resolves OS runtime compatibility issues, making `/` the preferred standard.
 - Leave Python scripts imported with `pip` in rolling release.

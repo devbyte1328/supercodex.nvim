@@ -1,11 +1,12 @@
 
+
 ---
 
 Author: devbyte1328
 
 Document: STANDARDS.md
 
-Version: 0.0.33
+Version: 0.1.0
 
 Last Updated: 14-03-2026
 
@@ -105,7 +106,7 @@ the "house is tidy."
 
 ---
 
-## Definitions 📋
+## Definitions
 
 ### 𝐅𝐮𝐧𝐜𝐭𝐢𝐨𝐧
 
@@ -167,29 +168,31 @@ Language", and one level before it is the "Hyper-Technical Language".
 
 ---
 
-## Imported Standards 📋
+## Imported Standards
 
 This document takes precedence over any imported standards.
 
-For versioning scheme use
 
-**Semantic Versioning 2.0.0** *(Full practice without any exception)*
+
+### Semantic Versioning 2.0.0
+
+Versioning scheme, full practice without any exception.
 
 ```
 https://semver.org
 ```
 
-For ANY protocol documentation use
+### RFC 2119
 
-**RFC 2119**
+Any protocol documentation.
 
 ```
 https://rfc-editor.org/rfc/rfc2119
 ```
 
-For coding styles and/or conventions use
+### Python PEP 8
 
-**Python PEP 8** *(Except for parts that are overwritten or forbidden)*
+Coding styles and/or conventions, except for parts that are overwritten or forbidden.
 
 ```
 https://peps.python.org/pep-0008
@@ -197,7 +200,18 @@ https://peps.python.org/pep-0008
 
 ---
 
-## Naming Framework Standard 📋
+## Naming Framework Standard
+
+> [!NOTE]
+> In the following standard, four terms are used to categorize different types of
+> words and groups of words. These terms are made up and exist only as references
+> for the categories, so don’t read too much into them. They slightly hint at how
+> each category is used, but they are not meant to carry deeper meaning beyond
+> that. Sorry if this is confusing, I didn’t have better terms to use for this
+> part of the document. The terms are: "Functionist", "Dataist",
+> "Categorizationist", and "Researchist".
+
+### Description
 
 The naming framework consists of three rules: Word Groups, Dataist Word Types,
 
@@ -219,27 +233,29 @@ Connectors is used.
 
 #### Dataist Word Types
 
-- *`any word`***`(Categorizationist)`** - A hyper-technical/high-level term
+- *`any word`***`(Categorizationist)`** - A hyper-technical or high-level term
 
-    that describes the stored value/function/solution definition.
+    that describes the stored value, function, or solution definition.
     
-- *`any word`***`(Researchist)`** - a Mathematics/Technologies based term/data
+- *`any word`***`(Researchist)`** - a Mathematics or Technologies based term or
 
-    type that describes the stored value/function/solution definition.
+    data type that describes the stored value, function, or solution
+    
+    definition.
 
 #### Connectors
 
-- `of` - Bases the variable, function, solution definition, or data type on the
+- `of` - Bases the variable, function, solution definition, or data type to the
 
-    group on the right.
+    word group on the right.
     
 - `with` - Combines the left group with the right group.
 
-- `for` - Describes what variable, function, or solution definition will use
+- `for` - Describes what variable, function, or solution definition is to use
 
     the stored value.
 
-#### MUST ❗
+### MUST ❗
 
 - Put an underscore between each word.
 
@@ -263,7 +279,9 @@ Connectors is used.
 
     the function returns data.
 
-#### MUST NOT ❗
+### MUST NOT ❗
+
+- Use single-word abbreviations.
 
 - Use the `for` connector with the name of the base-script in which it is
 
@@ -271,22 +289,18 @@ Connectors is used.
 
 - Use `of` to base a Functionist word group.
 
-#### MAY ❗
-
-- Pick any word amount to sufficiently describe variable/function.
-
-- Have functionist group type with the second word `return` to indicate it's
-function returns data.
-
-#### MAY ❗
+### MAY ❗
 
 - Use any number of words necessary to sufficiently describe a variable or function.
 
-#### Examples
+### Examples
 
 Correct ✅
 
 ```
+From Standards import *
+import os
+
 from Scripts.Logs import *
 from Scripts.System_Prompts import *
 
@@ -317,7 +331,10 @@ eight_words = "directory_path_of_python_scripts_with_prefix_of_line_numbers_for_
 ```
 
 Wrong ❌
+
 ```
+import os
+
 from utils.logs import *
 from utils.system_prompts import *
 
@@ -337,62 +354,6 @@ two_words = "Script_Path"
 three_words = "LLM_Script_Path"
 four_words = "LLM_python_script_path"
 six_words = "LLM_python_scripts_prefixed_with_line_numbers"
-```
-
----
-## Working Directory Standards 📋
-Includes standards for Filsystems and codebases.
-> [!NOTE]
-> These rules are exceptions to human text and code comments.
-
-### Adherent Requirements
-
-#### MUST ❗
-- Ignore the non-standardized names of automatically generated filesystems and
-codebases.
-- Name variables and functions using **capitalized multi-word abbreviations**
-when introducing multi-word solution definitions (e.g., `"IDR"` for
-`"instruction_dependency_resolutions"`).
-- Use `/` when defining filesystem path values.
-- For filesystem names:
-  - Capitalize the first letter of each major word.
-  - Use lowercase for minor words.
-  - Separate all words with underscores.
-- Fully capitalize Markdown filenames.
-- Version-control Python scripts that are imported with `pip`.
-- Use the file `Scripts.pip` for storing pip-managed Python scripts.
-
-#### MUST NOT ❗
-- Use single-word abbreviations (e.g., `"doc"` for `"documentations"`).
-- Use `\` when defining filesystem path values. Docker resolves OS runtime compatibility issues, making `/` the preferred standard.
-- Leave Python scripts imported with `pip` in rolling release.
-- Use `requirements.txt` for storing pip-managed Python scripts.
-
-#### MAY ❗
-- Avoid using the same type of connector more than once within the same name.
-
-### Examples
-
-Correct ✅
-```
-PATH_OF_STE = f"{PATH_OF_HOME_USER}/Models/all-MiniLM-L6-v2"
-
-instruction = ""
-
-IDR = []
-
-instruction_dependancies = ["abc", "def", "ghi"]
-```
-
-Wrong ❌
-```
-PATH_OF_SENTENCE_TRANSFORMER_ENCODER = os.path.expanduser("~\Models\all-MiniLM-L6-v2")
-
-Instruction = ""
-
-instruction_dependancy_resolutions = []
-
-ID = ["abc", "def", "ghi"]
 ```
 
 Correct ✅
@@ -437,80 +398,49 @@ Wrong ❌
 ├── readme.md
 ├── requirements.txt
 ├── standards.py
-├── libs
+├── utils
 │   ├── logs.py
 │   └── system_prompts.py
 └── venv
 ```
 
-#### MUST ❗
-The following files **must exist** in the working directory:
-
-- `Standards.py`
-- `README.md`
-- `Main.py`
-- `Dockerfile`
-- `.git`
-- `.gitignore`
-
-`Standards.py` may be placed either in the working directory or inside the
-`Documentations/` directory.
-
-`Main.py` must serve as the **entry point script**.
-
-`Main.py` must also be the location where the **public API is declared**.
-
-`Main.py` and `README.md` must both include the **solution version**.
-
-Private solutions must include, at minimum, initialization instructions in
-`README.md` written in **hyper-technical language**.
-
-Public solutions must include initialization instructions in `README.md`
-written in **high-level language**.
-
 ---
 
-## Python Standards.py 📋
+## Working Directory Standards
 
-`Standards.py` acts as the **compatibility layer for the standards**.  
-It is a crude but effective method of redefining Python behavior so that it
-conforms to the standards defined in this document.
+### Description
 
-When writing code or importing scripts, **first update the compatibility layer**
-to include the necessary corrections.
+Filsystems and Codebases.
 
-To access the standardized definitions in a target script, include the
-following at the top of the file:
+#### Standards.py
 
-```
-from Standards import *
-```
+`Standards.py` acts as the compatibility layer for the standards, a crude and
 
-#### MUST ❗
+brutish way of applying them to Python. When writing code or importing scripts,
 
-> [!NOTE]
-> Exception: `importlib.util`
+first update the compatibility layer to include any necessary corrections. To
 
-- `Standards.py` must contain **two empty lines above and below the script**.
-- Each **script import section** must contain **two empty lines above and below**.
-- Each **function** must contain **one empty line above and below**.
-- Functions must **not contain empty lines internally**.
-- Each function must **begin with the name of the base script being standardized**.
+access the standardized definitions in a target script, include the following
 
-### Template for `Standards.py`
+at the top of the file: `from Standards import *`
+
+**Template**
+
+<details><summary>🔽 CLICK TO EXPAND CODE... 🔽</summary>
 
 ```
 
 
 # Python
 
-integer = int
-string = str
-title_list = dict
+Python_data_type_integer = int
+Python_data_type_float = float
+Python_data_type_string = str
+Python_data_type_boolean = bool
+Python_data_type_list = list
+Python_data_type_tag_list = dict
 
 import importlib.util
-
-
 def Python_load_immutables(immutable_data):
     spec = importlib.util.spec_from_file_location(
         "immutables",
@@ -521,14 +451,26 @@ def Python_load_immutables(immutable_data):
     immutable_data = getattr(immutables, immutable_data)
     return immutable_data
 
+def Python_print(any_value):
+    print(any_value)
 
 def Python_integer(any_value):
     return int(any_value)
-
-
+    
+def Python_float(any_value):
+    return float(any_value)
+    
 def Python_string(any_value):
     return str(any_value)
+    
+def Python_boolean(any_value):
+    return bool(any_value)
+    
+def Python_list(any_value):
+    return list(any_value)
 
+def Python_tag_list(any_value):
+    return dict(any_value)
 
 def Python_fstring(string_value):
     loop = 0
@@ -545,7 +487,9 @@ def Python_fstring(string_value):
                     text_for_output += string_value[loop:loop + 1]
                 elif string_value[loop:loop + 1] == "'":
                     was_single_quotes_found = True
-                    temporary_hold_of_single_quotes += string_value[loop:loop + 1]
+                    temporary_hold_of_single_quotes += (
+                        string_value[loop:loop + 1]
+                    )
             elif was_single_quotes_found == True:
                 if string_value[loop:loop + 1] != "'":
                     text_for_output += temporary_hold_of_single_quotes
@@ -553,7 +497,9 @@ def Python_fstring(string_value):
                     temporary_hold_of_single_quotes = ""
                     was_single_quotes_found = False
                 elif string_value[loop:loop + 1] == "'":
-                    temporary_hold_of_single_quotes += string_values[loop:loop + 1]
+                    temporary_hold_of_single_quotes += (
+                        string_values[loop:loop + 1]
+                    )
         elif was_f_string_divider_found == True:
             text_for_output = text_for_output[:-1]
             was_double_quotes_found = False
@@ -562,30 +508,34 @@ def Python_fstring(string_value):
         loop += 1
     return text_for_output[1:-1]
 
-
-def Python_titles_list(title_list):
-    return list(title_list)
-
-
 def Python_read_file(FILE_PATH):
     open_file = open(FILE_PATH, "r").read()
     open(FILE_PATH).close()
     return open_file
 
-
+def Python_read_binary_of_file(FILE_PATH):
+    open_file = open(FILE_PATH, "rb").read()
+    open(FILE_PATH).close()
+    return open_file
+    
 def Python_write_file(FILE_PATH, STRING_VALUE):
     open(FILE_PATH, "a").write(STRING_VALUE)
     open(FILE_PATH).close()
 
+def Python_write_binary_of_file(FILE_PATH, STRING_VALUE):
+    open(FILE_PATH, "ab").write(STRING_VALUE)
+    open(FILE_PATH).close()
 
 def Python_overwrite_file(FILE_PATH, STRING_VALUE):
     open(FILE_PATH, "w").write(STRING_VALUE)
     open(FILE_PATH).close()
 
+def Python_overwrite_binary_of_file(FILE_PATH, STRING_VALUE):
+    open(FILE_PATH, "wb").write(STRING_VALUE)
+    open(FILE_PATH).close()
 
-def Python_type(ANY_VALUE)
+def Python_type(ANY_VALUE):
     return type(ANY_VALUE)
-
 
 def Python_length(ANY_VALUE):
     return len(ANY_VALUE)
@@ -593,79 +543,241 @@ def Python_length(ANY_VALUE):
 
 import os
 
+def OS_exit_Main():
+    os.sys.exit()
 
-def OS_initalize_directory(directory_path):
+def OS_environment(ANY_TAG, ANY_VALUE):
+    os.environ[ANY_TAG] = ANY_VALUE
+
+def OS_initialize_directory(directory_path):
     os.makedirs(directory_path)
 
+def OS_return_boolean_filesystem(filesystem_path):
+    return os.path.exists(filesystem_path)
 
-def OS_return_boolean_of_directory_initialization(directory_path):
-    return os.path.isdir(directory_name)
+def OS_return_boolean_file(file_path):
+    return os.path.isfile(file_path) 
 
+def OS_return_boolean_directory(directory_path):
+    return os.path.isdir(directory_path)
 
-def OS_list_files_in_directory(directory_path):
+def OS_return_list_of_directory_files(directory_path):
     return os.listdir(directory_path)
-
 
 def OS_delete_file(file_path):
     os.remove(file_path)
 
-
 def OS_return_path_of_home_user():
     return os.path.expanduser("~")
 
+def OS_return_absolute_path(relative_path_of_filesystem):
+    return os.path.abspath(relative_path_of_filesystem)
+
+def OS_return_resolution_path_of_symbolic_link(relative_path_of_symbolic_link):
+    return os.path.realpath(relative_path_of_symbolic_link)
+
+def OS_return_function_parameters():
+    return os.sys.argv
+
+
+import subprocess
+
+def SubProcess_Initialize(functions):
+    subprocess.run(functions, shell=True)
+
+def SubProcess_Parallel_Initialize(functions):
+    subprocess.Popen(functions, shell=True)
+
+
+import signal
+
+def Signal_signal(signal_type, function):
+    signal.signal(signal_type, function)
+
+def Signal_return_signal_for_interruption():
+    return signal.SIGINT
+
+def Signal_return_signal_for_termination():
+    return signal.SIGTERM
+
 
 ```
 
-## Python Immutables 📋
+</details>
 
-`Tuples` and `Frozen Dataclasses` are **not recognized as immutable types**
-under these standards, and their use is **forbidden** under the *Python Code
-Rules*.
+#### .Immutables.py
 
-At the time of writing, Python does not provide a true immutable data type.
+`Tuples` and `Frozen Dataclasses` are not recognized as immutable data types
 
-However, the concept of immutability can improve code readability by clearly
-expressing intent. Therefore, developers are encouraged to experiment with
-**fake immutables** (yes, seriously).
+under these standards, and their use is forbidden. At the time of writing,
 
-Inside the working directory, create a file named:
+Python does not provide true immutable data types. However, the concept of
 
-```
-.Immutables.py
-```
+immutability can improve code readability by expressing intent more clearly.
 
-This file will store and expose the fake immutable values.
+For this reason, developers are encouraged to experiment with fake immutables.
 
-Instructions for using `.Immutables.py` are provided in the section
-**Python .Immutables.py**.
+To use fake immutables, create `.Immutables.py` in the working directory. This
+
+script stores the fake immutable values that will be exposed. In the target
+
+script, use `from Standards import *` all the way at the top. Pass the fake
+
+immutable reference to `Python_load_immutables()` and assign the returned value
+
+to the constant. Prefix every constant in `.Immutables.py` with `IMMUTABLE`.
+
+`.Immutables.py` must contain two empty lines above and two empty lines below
+
+the script. Uppercase the entire `.Immutables.py`. Do not include empty lines
+
+between code lines in `.Immutables.py`.
+
+
+#### While Function
+
+Before using a `while` function, initialize a `loop` counter variable. Use this
+
+variable in the loop condition. Increment the counter at the end of the loop
+
+body with exactly one level of indentation.
+
+
+### MUST ❗
+
+- Have `Standards.py` contain two empty lines above and below the script, each
+
+    script import section must contain two empty lines above and below, each
+
+    function must contain one empty line above and below, no empty lines inside the
+
+    functions, each function has to begin with the name of the base script being
+
+    standardized.
+
+- Have `Main.py` serve as the entry point script.
+
+- Have `Main.py` be the location where the public API is declared.
+
+- Have `Main.py` and `README.md` declare the version.
+
+- Have the working directory contain the files, "STANDARDS.md", "Standards.py",
+
+    "README.md", "Main.py", "Dockerfile", ".git", ".gitignore"
+
+- Apply compatibility workarounds to imported technologies so they comply with
+
+    these standards (In Python, this is implemented through `Standards.py`.)
+
+- Maintain a maximum line length of 79 characters.
+
+    If a variable name causes a line to exceed this limit, shorten the
+    
+    variable name by removing unnecessary words.
+    
+- For functions that resolve conditions:
+
+    `if` for the primary intended data manipulation.
+
+    `elif` for following cases.
+
+    `else` only when absolutely necessary.
+
+    `raise` only with Python's standard exception hierarchy:
+
+    `https://docs.python.org/3/library/exceptions.html#exception-hierarchy`
+
+- Add a comment after the index explaining any `+1` or `-1` correction made due
+
+    to Python's zero-based indexing.
+
+- Only code with Python data types: "Integers", "Floats", "Strings",
+
+    "Booleans", "Lists", and "Tag Lists".
+
+- Only code with Python Functions: "Imports", "Built-in", "Base-script",
+
+    "Whiles", "Ifs", "Elifs", "Elses", "Ins", "Not Ins", "Trys",
+    
+    "Excepts", "Finallys", and "Raises".
+
+
+- Have `README.md` at the very least include initialization instructions
+
+     written in a hyper-technical language for private solutions.
+
+- Have `README.md` include initialization instructions in `README.md` written
+
+    in a high-level language for public solutions.
+
+- Ignore the non-standardized names of automatically generated filesystems and
+
+    codebases.
+
+- Use `/` when defining filesystem path values.
+
+- For filesystem names, Uppercase the first letter of each major word, use
+
+    lowercase for minor words, Separate all words with underscores.
+
+- Uppercase all letters for Markdown filenames.
+
+- Use `Virtual_Environment` to name the Python virtual environment.
+
+- Use the file `Scripts.pip` for storing Python scripts imported with `pip`.
+
+- Version control Python scripts imported with `pip` in `Scripts.pip`.
 
 
 
-## Python .Immutables.py
+### MUST NOT ❗
 
-To support fake immutables, the data type will simply be referred to as
-**immutables**.
+- Use the file `requirements.txt` for storing pip-managed Python scripts. 
 
-#### MUST ❗
+- Use `venv` to name the Python virtual environment.
 
-- `.Immutables.py` must contain **two empty lines above and below the script**.
-- The **Variables Naming Framework** must be followed.
-- The **entire script must be capitalized**.
-- There must be **no empty lines between immutables**.
+- Use `\` when defining filesystem path values.
 
-To import immutable values:
+- Leave Python scripts imported with `pip` in rolling release.
 
-1. Ensure `Standards.py` has been imported using:
+- Use the file `requirements.txt` for storing Python scripts imported with `pip`.
 
-```
-from Standards import *
-```
+- Use the Imports: "pathlib", "sys", and "shutil".
 
-2. Initialize the constant with the prefix `IMMUTABLE`.
-3. Pass the immutable reference into `load_immutables()`.
-4. Assign the returned value to the constant.
+- Use the legacy Python functions: "Classes", "Frozen Dataclasses", "Tuples",
 
-### Example
+    "Object Methods", "Lambdas", "For Loops", "Is"
+
+- Nest While functions that isn't Main.
+
+- Pass functions into functions
+
+- Have functions returns functions
+
+- Use Dunders
+
+- Using `not` before `in`
+
+- Modify the base of the imported technology to enforce these standards.
+
+### MAY ❗
+
+- `Standards.py` ca be placed either in the working directory or inside the
+    `Documentations/` directory.
+
+
+### Examples
+
+Correct ✅
+
+> Using `Standards.py` to standardize Python functions.
+
+
+Wrong ❌
+
+> Using `CPython` to fix Python for compliance with these standards.
+
+Correct ✅
 
 `.Immutables.py`
 
@@ -678,13 +790,15 @@ LIST_OF_ERROR_CRITICAL = ["ERROR", "CRITICAL"]
 
 ```
 
-`Scripts/Log.py`
+`Scripts/Log.py` ("Main.py" initializes "Log.py")
 
 ```
 from Standards import *
 
-IMMUTABLE_LIST_DEBUG = load_immutables("LIST_DEBUG")
-IMMUTABLE_LIST_OF_ERROR_CRITICAL = load_immutables("LIST_OF_ERROR_CRITICAL")
+
+IMMUTABLE_LIST_DEBUG = Python_load_immutables("LIST_DEBUG")
+IMMUTABLE_LIST_OF_ERROR_CRITICAL = Python_load_immutables("LIST_OF_ERROR_CRITICAL")
+
 
 LIST_OF_LOG_TYPES = (
     IMMUTABLE_LIST_DEBUG
@@ -693,109 +807,57 @@ LIST_OF_LOG_TYPES = (
 )
 ```
 
-## Python Code Standards 📋
+Wrong ❌
 
-### Adherent Requirements
-
-#### MUST ❗
-
-Apply compatibility workarounds to imported technologies so they comply with
-these standards.  
-(In Python, this is implemented through `Standards.py`.)
-
-Maintain a **maximum line length of 79 characters**.
-
-If a variable name causes a line to exceed this limit, **remove words from the
-variable name**.
-
-Code using only references to the **standardized Python definitions**.
+`Scripts/Log.py`
 
 ```
-Python Data Types:
-"Integers", "Floats", "Strings", "Booleans", "Lists", and "Tag Lists"
+IMMUTABLE_LIST_DEBUG = ["DEBUG"]
+IMMUTABLE_LIST_OF_ERROR_CRITICAL = ["ERROR", "CRITICAL"]
 
-Python Naming Convention:
-"Constants"
-
-Python Property Type:
-"Immutables"
-
-Python Functions:
-"Imports", "Built-in", "Base-script", "Whiles", and
-"Condition Functions"
-("Ifs", "Elifs", "Elses", "Ins", "Not Ins", "Trys", "Excepts", "Finallys", and "Raises")
+LIST_OF_LOG_TYPES = (
+    IMMUTABLE_LIST_DEBUG
+    + ["INFO", "WARNING"]
+    + IMMUTABLE_LIST_OF_ERROR_CRITICAL
+)
 ```
 
-### Python Indexing Standard 📋
-
-If an index is corrected using `+1` or `-1` because Python indexing starts
-at `0`, a comment must be added explaining the correction.
-
-Example:
+Correct ✅
 
 ```
 string_of_loop_for_IDR = Python_string(loop_for_IDR + 1)
 # "+ 1" because of Python indexing...
 ```
 
-### Python While Function Standard 📋
 
-`break` **may be used** to exit the loop.
+Wrong ❌
+
+```
+string_of_loop_for_IDR = Python_string(loop_for_IDR + 1)
+```
+
+Correct ✅
 
 ```
 loop = 0
-...
-while loop < ...:
-    ...
-        break
-    ...
+loop_for_line_number = 0
+last_of_line_number = 10
+script = "import os; print("hello world")..."
+line_number = loop_for_line_number
+while loop < last_of_line_number:
+    if script[loop] == "\n":
+        line_number += 1
     loop += 1
+    
 ```
 
-### Python Condition Function Standard 📋
-
-- **If** — used for the primary intended data manipulation.
-- **Elif** — used for secondary or exceptional cases.
-- **Else** — used only when absolutely necessary.
-- **Raise** statements must use **Python's standard error hierarchy**.
-
-A reference list of Python exceptions can be found here:
+Wrong ❌
 
 ```
-https://docs.python.org/3/library/exceptions.html#exception-hierarchy
+line_number = loop_for_line_number
+for loop in range(last_of_line_number):
+    if script[loop] == "\n":
+        line_number += 1
 ```
 
-#### MUST NOT ❗
 
-Do **not modify the base implementation of the imported technology** to
-enforce these standards.
-
-Example: modifying **CPython** itself to comply with these standards.
-
-> [!NOTE]
-> Exceptions apply only to:
-> - `Standards.py`
-> - Python data type redefinitions
-> - Python condition functions
-
-The following legacy Python constructs **must not be used**:
-
-```
-Classes
-Frozen Classes
-Tuples
-Object Methods
-Lambdas
-For Loops
-Is (comparison operator)
-Nested While Loops
-Functions within functions
-Functions that return functions
-Dunder methods
-Using "not" before "in"
-```
-
-MUST NOT USE IMPORTS:
-pathlib
-sys
-shutil

@@ -106,7 +106,7 @@ the "house is tidy."
 
 ---
 
-## Definitions 📋
+## Definitions
 
 ### 𝐅𝐮𝐧𝐜𝐭𝐢𝐨𝐧
 
@@ -168,21 +168,23 @@ Language", and one level before it is the "Hyper-Technical Language".
 
 ---
 
-## Imported Standards 📋
+## Imported Standards
 
 This document takes precedence over any imported standards.
 
-For versioning scheme use
 
-**Semantic Versioning 2.0.0** *(Full practice without any exception)*
+
+### Semantic Versioning 2.0.0
+
+Versioning scheme, full practice without any exception.
 
 ```
 https://semver.org
 ```
 
-For ANY protocol documentation use
+### RFC 2119
 
-**RFC 2119**
+Any protocol documentation.
 
 ```
 https://rfc-editor.org/rfc/rfc2119
@@ -190,7 +192,9 @@ https://rfc-editor.org/rfc/rfc2119
 
 For coding styles and/or conventions use
 
-**Python PEP 8** *(Except for parts that are overwritten or forbidden)*
+### Python PEP 8
+
+Coding styles and/or conventions, except for parts that are overwritten or forbidden.
 
 ```
 https://peps.python.org/pep-0008
@@ -198,7 +202,9 @@ https://peps.python.org/pep-0008
 
 ---
 
-## Naming Framework Standard 📋
+## Naming Framework Standard
+
+### Description
 
 The naming framework consists of three rules: Word Groups, Dataist Word Types,
 
@@ -240,7 +246,7 @@ Connectors is used.
 
     the stored value.
 
-#### MUST ❗
+### MUST ❗
 
 - Put an underscore between each word.
 
@@ -264,7 +270,7 @@ Connectors is used.
 
     the function returns data.
 
-#### MUST NOT ❗
+### MUST NOT ❗
 
 - Use the `for` connector with the name of the base-script in which it is
 
@@ -272,11 +278,11 @@ Connectors is used.
 
 - Use `of` to base a Functionist word group.
 
-#### MAY ❗
+### MAY ❗
 
 - Use any number of words necessary to sufficiently describe a variable or function.
 
-#### Examples
+### Examples
 
 Correct ✅
 
@@ -389,153 +395,13 @@ Wrong ❌
 
 ---
 
-## Working Directory Standards 📋
+## Working Directory Standards
+
+### Description
 
 Filsystems and Codebases.
 
-#### MUST ❗
-
-- Apply compatibility workarounds to imported technologies so they comply with
-
-    these standards (In Python, this is implemented through `Standards.py`.)
-
-- Maintain a maximum line length of 79 characters.
-
-    If a variable name causes a line to exceed this limit, shorten the
-    
-    variable name by removing unnecessary words.
-    
-- For functions that resolve conditions:
-
-    `if` for the primary intended data manipulation.
-
-    `elif` for secondary or exceptional cases.
-
-    `else` only when absolutely necessary.
-
-    `raise` only with Python's standard exception hierarchy:
-
-    https://docs.python.org/3/library/exceptions.html#exception-hierarchy
-
-- Add a comment after the index explaining any `+1` or `-1` correction made due
-
-    to Python's zero-based indexing.
-
-
-
-
-
-
-- Only code with Python data types: "Integers", "Floats", "Strings", "Booleans", "Lists", and "Tag Lists".
-
-- Only code with Python Functions: "Imports", "Built-in", "Base-script",
-    "Whiles", "Ifs", "Elifs", "Elses", "Ins", "Not Ins", "Trys",
-    "Excepts", "Finallys", and "Raises".
-
-- Use initialize `loop = 0` before while, pass `loop = 0` into while, and `loop += 1` indented once inside while.
-
-            - Refer to fake immutables simply as immutables
-            - prefix the every constant in `.Immutables.py` with `IMMUTABLE`.
-            - `.Immutables.py` must contain two empty lines above and below the script.
-            - Uppercase the entire `.Immutables.py`.
-            - No empty lines between immutables.
-
-
-
-
-            > [!NOTE]
-            > Exception: `importlib.util`
-
-            - `Standards.py` must contain **two empty lines above and below the script**.
-            - Each **script import section** must contain **two empty lines above and below**.
-            - Each **function** must contain **one empty line above and below**.
-            - Functions must **not contain empty lines internally**.
-            - Each function must **begin with the name of the base script being standardized**.
-
-
-
-            The following files **must exist** in the working directory:
-
-            - `Standards.py`
-            - `README.md`
-            - `Main.py`
-            - `Dockerfile`
-            - `.git`
-            - `.gitignore`
-
-            `Standards.py` may be placed either in the working directory or inside the
-            `Documentations/` directory.
-
-            `Main.py` must serve as the **entry point script**.
-
-            `Main.py` must also be the location where the **public API is declared**.
-
-            `Main.py` and `README.md` must both include the **solution version**.
-
-            Private solutions must include, at minimum, initialization instructions in
-            `README.md` written in **hyper-technical language**.
-
-            Public solutions must include initialization instructions in `README.md`
-            written in **high-level language**.
-
-
-
-- Ignore the non-standardized names of automatically generated filesystems and
-codebases.
-- Name variables and functions using **capitalized multi-word abbreviations**
-when introducing multi-word solution definitions (e.g., `"IDR"` for
-`"instruction_dependency_resolutions"`).
-- Use `/` when defining filesystem path values.
-- For filesystem names:
-  - Capitalize the first letter of each major word.
-  - Use lowercase for minor words.
-  - Separate all words with underscores.
-- Fully capitalize Markdown filenames.
-- Version-control Python scripts that are imported with `pip`.
-- Use the file `Scripts.pip` for storing pip-managed Python scripts.
-
-#### MUST NOT ❗
-
-- Use single-word abbreviations (e.g., `"doc"` for `"documentations"`).
-- Use `\` when defining filesystem path values. Docker resolves OS runtime compatibility issues, making `/` the preferred standard.
-- Leave Python scripts imported with `pip` in rolling release.
-- Use `requirements.txt` for storing pip-managed Python scripts.
-- Use the Imports: "pathlib", "sys", "shutil"
-
-
-            Do **not modify the base implementation of the imported technology** to
-            enforce these standards.
-
-            Example: modifying **CPython** itself to comply with these standards.
-
-            > [!NOTE]
-            > Exceptions apply only to:
-            > - `Standards.py`
-            > - Python data type redefinitions
-            > - Python condition functions
-
-            The following legacy Python constructs **must not be used**:
-
-            ```
-            Classes
-            Frozen Classes
-            Tuples
-            Object Methods
-            Lambdas
-            For Loops
-            Is (comparison operator)
-            Nested While Loops
-            Functions within functions
-            Functions that return functions
-            Dunder methods
-            Using "not" before "in"
-            ```
-
-#### MAY ❗
-
-- Use Python Property Type: "Immutables"
-
-### Python `Standards.py`
+#### Standards.py
 
 `Standards.py` acts as the compatibility layer for the standards, a crude and
 
@@ -547,10 +413,9 @@ access the standardized definitions in a target script, include the following
 
 at the top of the file: `from Standards import *`
 
-### Template for `Standards.py`
+**Template**
 
-<details>
-<summary>Standards.py</summary>
+<details><summary>🔽 CLICK TO EXPAND CODE... 🔽</summary>
 
 ```
 
@@ -726,35 +591,184 @@ def Signal_return_signal_for_termination():
 
 
 ```
+
 </details>
 
-### Python Immutables
+#### .Immutables.py
 
-`Tuples` and `Frozen Dataclasses` are not recognized as immutable types under
+`Tuples` and `Frozen Dataclasses` are not recognized as immutable data types
 
-these standards, and their is forbidden. At the time of writing, Python does
+under these standards, and their use is forbidden. At the time of writing,
 
-not provide a true immutable data type. However, the concept of immutability
+Python does not provide any immutable data types. However, the concept of
 
-can improve code readability by clearly expressing intent. For this reason,
+immutability can improve code readability with the additional expression of
 
-developers are encouraged to experiment with "fake immutables". Instructions
+intent. For this reason, developers are encouraged to experiment with fake
 
-for using "fake immutables" are provided in the section "Python
+immutables. Inside the working directory, create a hidden Python script named
 
-.Immutables.py".
+`.Immutables.py`. This script will store and expose these fake immutable
 
-### Python `.Immutables.py`
+values. To import fake immutable values, import `Standards.py` in the target
 
-Inside the working directory, create a hidden Python script named
-
-`.Immutables.py`. This file will store and expose these fake immutable values.
-
-To import immutable values, import `Standards.py` in the target script using
-
-`from Standards import *`. Pass the immutable reference to
+script using `from Standards import *`. Pass the fake immutable reference to
 
 `Python_load_immutables()` and assign the returned value to the constant.
+
+#### While Function
+
+Before using a `while` function, initialize a `loop` counter variable. Use this
+
+variable in the loop condition. Increment the counter at the end of the loop
+
+body with exactly one level of indentation.
+
+
+### MUST ❗
+
+- Apply compatibility workarounds to imported technologies so they comply with
+
+    these standards (In Python, this is implemented through `Standards.py`.)
+
+- Maintain a maximum line length of 79 characters.
+
+    If a variable name causes a line to exceed this limit, shorten the
+    
+    variable name by removing unnecessary words.
+    
+- For functions that resolve conditions:
+
+    `if` for the primary intended data manipulation.
+
+    `elif` for secondary or exceptional cases.
+
+    `else` only when absolutely necessary.
+
+    `raise` only with Python's standard exception hierarchy:
+
+    https://docs.python.org/3/library/exceptions.html#exception-hierarchy
+
+- Add a comment after the index explaining any `+1` or `-1` correction made due
+
+    to Python's zero-based indexing.
+
+
+
+
+
+
+- Only code with Python data types: "Integers", "Floats", "Strings", "Booleans", "Lists", and "Tag Lists".
+
+- Only code with Python Functions: "Imports", "Built-in", "Base-script",
+    "Whiles", "Ifs", "Elifs", "Elses", "Ins", "Not Ins", "Trys",
+    "Excepts", "Finallys", and "Raises".
+
+- 
+
+            - prefix the every constant in `.Immutables.py` with `IMMUTABLE`.
+            - `.Immutables.py` must contain two empty lines above and below the script.
+            - Uppercase the entire `.Immutables.py`.
+            - No empty lines between immutables.
+
+
+
+
+            > [!NOTE]
+            > Exception: `importlib.util`
+
+            - `Standards.py` must contain **two empty lines above and below the script**.
+            - Each **script import section** must contain **two empty lines above and below**.
+            - Each **function** must contain **one empty line above and below**.
+            - Functions must **not contain empty lines internally**.
+            - Each function must **begin with the name of the base script being standardized**.
+
+
+
+            The following files **must exist** in the working directory:
+
+            - `Standards.py`
+            - `README.md`
+            - `Main.py`
+            - `Dockerfile`
+            - `.git`
+            - `.gitignore`
+
+            `Standards.py` may be placed either in the working directory or inside the
+            `Documentations/` directory.
+
+            `Main.py` must serve as the **entry point script**.
+
+            `Main.py` must also be the location where the **public API is declared**.
+
+            `Main.py` and `README.md` must both include the **solution version**.
+
+            Private solutions must include, at minimum, initialization instructions in
+            `README.md` written in **hyper-technical language**.
+
+            Public solutions must include initialization instructions in `README.md`
+            written in **high-level language**.
+
+
+
+- Ignore the non-standardized names of automatically generated filesystems and
+codebases.
+- Name variables and functions using **capitalized multi-word abbreviations**
+when introducing multi-word solution definitions (e.g., `"IDR"` for
+`"instruction_dependency_resolutions"`).
+- Use `/` when defining filesystem path values.
+- For filesystem names:
+  - Capitalize the first letter of each major word.
+  - Use lowercase for minor words.
+  - Separate all words with underscores.
+- Fully capitalize Markdown filenames.
+- Version-control Python scripts that are imported with `pip`.
+- Use the file `Scripts.pip` for storing pip-managed Python scripts.
+
+### MUST NOT ❗
+
+- Use single-word abbreviations (e.g., `"doc"` for `"documentations"`).
+- Use `\` when defining filesystem path values. Docker resolves OS runtime compatibility issues, making `/` the preferred standard.
+- Leave Python scripts imported with `pip` in rolling release.
+- Use `requirements.txt` for storing pip-managed Python scripts.
+- Use the Imports: "pathlib", "sys", "shutil"
+
+
+            Do **not modify the base implementation of the imported technology** to
+            enforce these standards.
+
+            Example: modifying **CPython** itself to comply with these standards.
+
+            > [!NOTE]
+            > Exceptions apply only to:
+            > - `Standards.py`
+            > - Python data type redefinitions
+            > - Python condition functions
+
+            The following legacy Python constructs **must not be used**:
+
+            ```
+            Classes
+            Frozen Classes
+            Tuples
+            Object Methods
+            Lambdas
+            For Loops
+            Is (comparison operator)
+            Nested While Loops
+            Functions within functions
+            Functions that return functions
+            Dunder methods
+            Using "not" before "in"
+            ```
+
+### MAY ❗
+
+- Use Python Property Type: "Immutables"
+
+
+
+
 
 ### Example
 

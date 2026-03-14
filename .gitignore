@@ -1,3 +1,9 @@
 rplugin/python3/supercodex/__pycache__
 tests/__pycache__
 .pytest_cache
+
+Drafts/SuperCodex-Core-Test/__pycache__
+Drafts/SuperCodex-Core-Test/Scripts/__pycache__
+Drafts/SuperCodex-Core-Test/Virtual_Environment
+Drafts/SuperCodex-Core-Test/Logs
+Drafts/SuperCodex-Core-Test/Output

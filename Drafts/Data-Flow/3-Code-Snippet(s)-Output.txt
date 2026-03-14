@@ -1,0 +1,71 @@
+Definitions:
+'''
+"Instruction Dependency"
+A single line of code that provides the required context for the user prompt input.
+
+"Scope Target"
+A single line of code that is subject to modification based on the passed parameters.
+
+"Direct Modification Scope Target"
+A single line of code that already exists and must be replaced with a newly modified line because it is subject to modification based on the passed parameters.
+
+"Positional Shift Scope Target"
+A single line of code that is pushed downward, leaving an empty line that is then used to insert a new code chunk, because it is subject to modification based on the passed parameters.
+
+"Implementation Process"
+A scope target resolution process intended to apply the new code snippet(s) provided in the parameters.
+'''
+
+Instruction Dependencies:
+'''game.py
+...
+Line_15|    print("1 - Easy (1 to 10)")
+Line_16|    print("2 - Medium (1 to 50)")
+Line_17|    print("3 - Hard (1 to 100)")
+...
+Line_20|    choice = input("Enter 1, 2, or 3: ")
+...
+Line_22|    if choice == "1":
+Line_23|        return 10
+Line_24|    elif choice == "2":
+Line_25|        return 50
+Line_26|    elif choice == "3":
+Line_27|        return 100
+...
+'''
+
+User Prompt Input:
+'''
+Add another difficulty, "Super Hard"
+'''
+
+Output only newly added or directly modified scope targets.
+Do not repeat unchanged dependency or instruction lines.
+Do not restate existing logic blocks.
+Provide only the minimal code required to implement the change.
+Do not include surrounding context or explanations.
+No additional code.
+Code only.
+Each code snippet must be wrapped in matching HTML-style tags in the format <supercodex-X>.
+Use the same identifier X for both the opening and closing tag of a snippet.
+Use a new incremented identifier for each separate snippet.
+Do not place anything except code between the matching tags.
+
+Format Example of HTML-style tags with Python Code:
+'''
+<supercodex-1>
+def return_string_hello_world():
+    hello = "Hello "
+    world = "World"
+    return(hello + world)
+<supercodex-1>
+<supercodex-2>
+hello_world = return_string_hello_world()
+<supercodex-2>
+<supercodex-3>
+print(hello_world)
+<supercodex-3>
+'''
+
+Code Snippet(s):
+

@@ -6,7 +6,7 @@ Author: devbyte1328
 
 Document: STANDARDS.md
 
-Version: 0.0.35
+Version: 0.1.0
 
 Last Updated: 14-03-2026
 
@@ -233,23 +233,25 @@ Connectors is used.
 
 #### Dataist Word Types
 
-- *`any word`***`(Categorizationist)`** - A hyper-technical/high-level term
+- *`any word`***`(Categorizationist)`** - A hyper-technical or high-level term
 
-    that describes the stored value/function/solution definition.
+    that describes the stored value, function, or solution definition.
     
-- *`any word`***`(Researchist)`** - a Mathematics/Technologies based term/data
+- *`any word`***`(Researchist)`** - a Mathematics or Technologies based term or
 
-    type that describes the stored value/function/solution definition.
+    data type that describes the stored value, function, or solution
+    
+    definition.
 
 #### Connectors
 
-- `of` - Bases the variable, function, solution definition, or data type on the
+- `of` - Bases the variable, function, solution definition, or data type to the
 
-    group on the right.
+    word group on the right.
     
 - `with` - Combines the left group with the right group.
 
-- `for` - Describes what variable, function, or solution definition will use
+- `for` - Describes what variable, function, or solution definition is to use
 
     the stored value.
 
@@ -278,6 +280,8 @@ Connectors is used.
     the function returns data.
 
 ### MUST NOT ❗
+
+- Use single-word abbreviations.
 
 - Use the `for` connector with the name of the base-script in which it is
 
@@ -607,13 +611,28 @@ def Signal_return_signal_for_termination():
 
 under these standards, and their use is forbidden. At the time of writing,
 
-Python does not provide any immutable data types. However, the concept of
+Python does not provide true immutable data types. However, the concept of
 
-immutability can improve code readability with the additional expression of
+immutability can improve code readability by expressing intent more clearly.
 
-intent. For this reason, developers are encouraged to experiment with fake
+For this reason, developers are encouraged to experiment with fake immutables.
 
-immutables.
+To use fake immutables, create `.Immutables.py` in the working directory. This
+
+script stores the fake immutable values that will be exposed. In the target
+
+script, use `from Standards import *` all the way at the top. Pass the fake
+
+immutable reference to `Python_load_immutables()` and assign the returned value
+
+to the constant. Prefix every constant in `.Immutables.py` with `IMMUTABLE`.
+
+`.Immutables.py` must contain two empty lines above and two empty lines below
+
+the script. Uppercase the entire `.Immutables.py`. Do not include empty lines
+
+between code lines in `.Immutables.py`.
+
 
 #### While Function
 
@@ -625,6 +644,26 @@ body with exactly one level of indentation.
 
 
 ### MUST ❗
+
+- Have `Standards.py` contain two empty lines above and below the script, each
+
+    script import section must contain two empty lines above and below, each
+
+    function must contain one empty line above and below, no empty lines inside the
+
+    functions, each function has to begin with the name of the base script being
+
+    standardized.
+
+- Have `Main.py` serve as the entry point script.
+
+- Have `Main.py` be the location where the public API is declared.
+
+- Have `Main.py` and `README.md` declare the version.
+
+- Have the working directory contain the files, "STANDARDS.md", "Standards.py",
+
+    "README.md", "Main.py", "Dockerfile", ".git", ".gitignore"
 
 - Apply compatibility workarounds to imported technologies so they comply with
 
@@ -646,138 +685,99 @@ body with exactly one level of indentation.
 
     `raise` only with Python's standard exception hierarchy:
 
-    https://docs.python.org/3/library/exceptions.html#exception-hierarchy
+    `https://docs.python.org/3/library/exceptions.html#exception-hierarchy`
 
 - Add a comment after the index explaining any `+1` or `-1` correction made due
 
     to Python's zero-based indexing.
 
+- Only code with Python data types: "Integers", "Floats", "Strings",
 
-
-
-
-
-- Only code with Python data types: "Integers", "Floats", "Strings", "Booleans", "Lists", and "Tag Lists".
+    "Booleans", "Lists", and "Tag Lists".
 
 - Only code with Python Functions: "Imports", "Built-in", "Base-script",
+
     "Whiles", "Ifs", "Elifs", "Elses", "Ins", "Not Ins", "Trys",
+    
     "Excepts", "Finallys", and "Raises".
 
-- 
 
-            - prefix the every constant in `.Immutables.py` with `IMMUTABLE`.
-            - `.Immutables.py` must contain two empty lines above and below the script.
-            - Uppercase the entire `.Immutables.py`.
-            - No empty lines between immutables.
+- Have `README.md` at the very least include initialization instructions
 
+     written in a hyper-technical language for private solutions.
 
+- Have `README.md` include initialization instructions in `README.md` written
 
-
-            > [!NOTE]
-            > Exception: `importlib.util`
-
-            - `Standards.py` must contain **two empty lines above and below the script**.
-            - Each **script import section** must contain **two empty lines above and below**.
-            - Each **function** must contain **one empty line above and below**.
-            - Functions must **not contain empty lines internally**.
-            - Each function must **begin with the name of the base script being standardized**.
-
-
-
-            The following files **must exist** in the working directory:
-
-            - `Standards.py`
-            - `README.md`
-            - `Main.py`
-            - `Dockerfile`
-            - `.git`
-            - `.gitignore`
-
-            `Standards.py` may be placed either in the working directory or inside the
-            `Documentations/` directory.
-
-            `Main.py` must serve as the **entry point script**.
-
-            `Main.py` must also be the location where the **public API is declared**.
-
-            `Main.py` and `README.md` must both include the **solution version**.
-
-            Private solutions must include, at minimum, initialization instructions in
-            `README.md` written in **hyper-technical language**.
-
-            Public solutions must include initialization instructions in `README.md`
-            written in **high-level language**.
-
-
+    in a high-level language for public solutions.
 
 - Ignore the non-standardized names of automatically generated filesystems and
-codebases.
-- Name variables and functions using **capitalized multi-word abbreviations**
-when introducing multi-word solution definitions (e.g., `"IDR"` for
-`"instruction_dependency_resolutions"`).
+
+    codebases.
+
 - Use `/` when defining filesystem path values.
-- For filesystem names:
-  - Capitalize the first letter of each major word.
-  - Use lowercase for minor words.
-  - Separate all words with underscores.
-- Fully capitalize Markdown filenames.
-- Version-control Python scripts that are imported with `pip`.
-- Use the file `Scripts.pip` for storing pip-managed Python scripts.
+
+- For filesystem names, Uppercase the first letter of each major word, use
+
+    lowercase for minor words, Separate all words with underscores.
+
+- Uppercase all letters for Markdown filenames.
+
 - Use `Virtual_Environment` to name the Python virtual environment.
+
+- Use the file `Scripts.pip` for storing Python scripts imported with `pip`.
+
+- Version control Python scripts imported with `pip` in `Scripts.pip`.
+
+
 
 ### MUST NOT ❗
 
 - Use the file `requirements.txt` for storing pip-managed Python scripts. 
+
 - Use `venv` to name the Python virtual environment.
-- Use single-word abbreviations (e.g., `"doc"` for `"documentations"`).
-- Use `\` when defining filesystem path values. Docker resolves OS runtime compatibility issues, making `/` the preferred standard.
+
+- Use `\` when defining filesystem path values.
+
 - Leave Python scripts imported with `pip` in rolling release.
-- Use `requirements.txt` for storing pip-managed Python scripts.
-- Use the Imports: "pathlib", "sys", "shutil"
 
+- Use the file `requirements.txt` for storing Python scripts imported with `pip`.
 
-            Do **not modify the base implementation of the imported technology** to
-            enforce these standards.
+- Use the Imports: "pathlib", "sys", and "shutil".
 
-            Example: modifying **CPython** itself to comply with these standards.
+- Use the legacy Python functions: "Classes", "Frozen Dataclasses", "Tuples",
 
-            > [!NOTE]
-            > Exceptions apply only to:
-            > - `Standards.py`
-            > - Python data type redefinitions
-            > - Python condition functions
+    "Object Methods", "Lambdas", "For Loops", "Is"
 
-            The following legacy Python constructs **must not be used**:
+- Nest While functions that isn't Main.
 
-            ```
-            Classes
-            Frozen Classes
-            Tuples
-            Object Methods
-            Lambdas
-            For Loops
-            Is (comparison operator)
-            Nested While Loops
-            Functions within functions
-            Functions that return functions
-            Dunder methods
-            Using "not" before "in"
-            ```
+- Pass functions into functions
+
+- Have functions returns functions
+
+- Use Dunders
+
+- Using `not` before `in`
+
+- Modify the base of the imported technology to enforce these standards.
 
 ### MAY ❗
 
-- Create `.Immutables.py` inside the working directory to store and expose fake
-
-    immutables, To expose, use `from Standards import *` in target script, Pass
-
-    the fake immutable reference to `Python_load_immutables()` and assign the
-
-    returned value to the constant.
+- `Standards.py` ca be placed either in the working directory or inside the
+    `Documentations/` directory.
 
 
+### Examples
+
+Correct ✅
+
+> Using `Standards.py` to standardize Python functions.
 
 
-### Example
+Wrong ❌
+
+> Using `CPython` to fix Python for compliance with these standards.
+
+Correct ✅
 
 `.Immutables.py`
 
@@ -807,20 +807,57 @@ LIST_OF_LOG_TYPES = (
 )
 ```
 
-### Example:
+Wrong ❌
+
+`Scripts/Log.py`
+
+```
+IMMUTABLE_LIST_DEBUG = ["DEBUG"]
+IMMUTABLE_LIST_OF_ERROR_CRITICAL = ["ERROR", "CRITICAL"]
+
+LIST_OF_LOG_TYPES = (
+    IMMUTABLE_LIST_DEBUG
+    + ["INFO", "WARNING"]
+    + IMMUTABLE_LIST_OF_ERROR_CRITICAL
+)
+```
+
+Correct ✅
 
 ```
 string_of_loop_for_IDR = Python_string(loop_for_IDR + 1)
 # "+ 1" because of Python indexing...
 ```
 
-### Example:
+
+Wrong ❌
+
+```
+string_of_loop_for_IDR = Python_string(loop_for_IDR + 1)
+```
+
+Correct ✅
 
 ```
 loop = 0
-...
-while loop < ...:
-    ...
+loop_for_line_number = 0
+last_of_line_number = 10
+script = "import os; print("hello world")..."
+line_number = loop_for_line_number
+while loop < last_of_line_number:
+    if script[loop] == "\n":
+        line_number += 1
     loop += 1
+    
 ```
+
+Wrong ❌
+
+```
+line_number = loop_for_line_number
+for loop in range(last_of_line_number):
+    if script[loop] == "\n":
+        line_number += 1
+```
+
 

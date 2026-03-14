@@ -1,13 +1,20 @@
 
+---
 
 Author: devbyte1328
-Document: STANDARDS.md
-Version: 0.0.31
-Last Updated: 13-03-2026
 
+Document: STANDARDS.md
+
+Version: 0.0.33
+
+Last Updated: 14-03-2026
+
+---
 
 This document is for development purposes. If you are reading this, it is
+
 probably because the document was added to a project, allowing readers to
+
 reference the standards. Regardless of your motive, I hope you find value.
 
 ---
@@ -15,13 +22,21 @@ reference the standards. Regardless of your motive, I hope you find value.
 # The Truth Will Set You Free
 
 Enough pretending. Software development lives in a fractured world. Languages,
+
 frameworks, conventions, distributions. STOP. Keep naming them and you'll get
+
 stuck in a forever loop. We tried to build a universal tower, and like the
+
 builders of Babel, we now live with the consequences. Endless dialects, endless
+
 disagreement, and endless reinvention. Understanding everything is impossible.
+
 This document makes a simpler choice. It discards the majority of solutions and
+
 bases everything on a single core concept, functions. It is not negotiable. It
+
 is set. The adherent must revert to first principles. These standards will not
+
 appeal to everyone, and they are not intended to.
 
 ---
@@ -29,11 +44,17 @@ appeal to everyone, and they are not intended to.
 # Purpose of This Document
 
 This document sets standards for software development. The standards are
+
 intended to allow most of the focus to be directed to the development of the
+
 solution. The practice of these standards will have the adherent revert to
+
 basics while preserving the capabilities of standardized technologies. The
+
 author reserves the option to extend these standards to any technology,
+
 technology stack, and general software development practices in future versions
+
 of this document.
 
 ---
@@ -41,14 +62,23 @@ of this document.
 # Look into the fray before you jump in
 
 Practicing these standards and onboarding to them is inconvenient and
+
 difficult. This document redefines existing concepts and frequently violates
+
 established nomenclature. This increases the difficulty of writing
+
 documentation and communicating about the code with developers who are unaware
+
 of, or unwilling to practice, these standards. There is a lot of overwritten
+
 and excluded code, concepts, and conventions. Continuous maintenance of the
+
 compatibility layer for these standards is required. And for the last part,
+
 though it is more of a social issue than a practical one, during scrutiny you
+
 are probably going to have to contend with arguments of "technology misuse". I
+
 hope you are already used to the last part.
 
 ---
@@ -56,13 +86,21 @@ hope you are already used to the last part.
 # But look on the bright side
 
 After the onboarding process, the adherent gains the benefit of being able to
+
 devote most of his time and energy to developing the solution rather than
+
 contending with frequently occurring problems during development. The
+
 filesystem and codebase become easier to read. Compatibility layers remove the
+
 need to read documentation and/or learn the nomenclature of the imported
+
 technology. Resolving multiple methodologies is no longer necessary (the
+
 "multiple approaches to the same solution" problem). A coding style is
+
 introduced, providing consistency within the code. And finally, it feels like
+
 the "house is tidy."
 
 ---
@@ -70,39 +108,61 @@ the "house is tidy."
 ## Definitions 📋
 
 ### 𝐅𝐮𝐧𝐜𝐭𝐢𝐨𝐧
+
 The core concept in software technology, it refers to the most basic form of
+
 code.
 
 ### 𝐈𝐧𝐢𝐭𝐢𝐚𝐥𝐢𝐳𝐞
+
 The core function that begins the compilation of functions passed into the
+
 parameters.
 
 ### 𝐓𝐚𝐠 𝐋𝐢𝐬𝐭
+
 Formerly known in Python as the data type *"Dictionary"*, a Tag List is a
+
 mutable, unordered collection of items, where each item consists of a unique
+
 tag and a corresponding value. Tag Lists allow fast retrieval of values based
+
 on their tags.
 
 ### 𝐌𝐮𝐥𝐭𝐢-𝐖𝐨𝐫𝐝 𝐀𝐛𝐛𝐫𝐞𝐯𝐢𝐚𝐭𝐢𝐨𝐧
+
 A shortened form created from multiple words by combining the initial
+
 letters of each word. it refers to identifiers formed
+
 from the first letters of a multi-word name.
 
 ### 𝐒𝐢𝐧𝐠𝐥𝐞-𝐖𝐨𝐫𝐝 𝐀𝐛𝐛𝐫𝐞𝐯𝐢𝐚𝐭𝐢𝐨𝐧
+
 A shortened form created from a single word by reducing its length while
+
 attempting to refer to that original word. it refers to
+
 simplified identifiers derived from one word.
 
 ### 𝐇𝐲𝐩𝐞𝐫-𝐓𝐞𝐜𝐡𝐧𝐢𝐜𝐚𝐥 𝐋𝐚𝐧𝐠𝐮𝐚𝐠𝐞
+
 A multi-purpose general language that is one level removed from practically
+
 being a programming language. It can be used for both human-to-human and
+
 human-to-LLM communication. On the complete opposite end of the
+
 spectrum there is the "High-Level Language"/"Natural Language".
 
 ### 𝐇𝐢𝐠𝐡-𝐋𝐞𝐯𝐞𝐥 𝐋𝐚𝐧𝐠𝐮𝐚𝐠𝐞
+
 A general language that MAY fall under the same definition as a human
+
 language depending on the epistemology used to describe the definition.
+
 On the complete opposite end of the spectrum there is the "Programming
+
 Language", and one level before it is the "Hyper-Technical Language".
 
 ---
@@ -112,6 +172,7 @@ Language", and one level before it is the "Hyper-Technical Language".
 This document takes precedence over any imported standards.
 
 For versioning scheme use
+
 **Semantic Versioning 2.0.0** *(Full practice without any exception)*
 
 ```
@@ -119,6 +180,7 @@ https://semver.org
 ```
 
 For ANY protocol documentation use
+
 **RFC 2119**
 
 ```
@@ -126,6 +188,7 @@ https://rfc-editor.org/rfc/rfc2119
 ```
 
 For coding styles and/or conventions use
+
 **Python PEP 8** *(Except for parts that are overwritten or forbidden)*
 
 ```
@@ -136,89 +199,121 @@ https://peps.python.org/pep-0008
 
 ## Naming Framework Standard 📋
 
-The naming framework consists of three rules, **Word Groups**, **Dataist Word
-Types**, and **Connectors**. One to two words is a word group, each word is one
-of four word types, between each word group there is one of three connectors
+The naming framework consists of three rules: Word Groups, Dataist Word Types,
+
+and Connectors. A Word Group contains one or two words. Each word belongs to
+
+one of two Dataist Word Types. Between each Word Group, one of three
+
+Connectors is used.
 
 #### Word Groups
-- *`any base-script`***`(Functionist)`** - The name of the base-script itself
-and "return" to disclose functions that return data
-- *`any words`***`(Dataist)`** - Containing any of categorizationist and/or
-researchist word types
+
+- *`any base-script`***`(Functionist)`** The name of the base-script itself
+
+    and "return" to disclose functions that return data.
+
+- *`any words`***`(Dataist)`** - Contains any Categorizationist and/or
+
+    Researchist word types.
 
 #### Dataist Word Types
-- *`any word`***`(Categorizationist)`** - A hyper-technical/high-level term that
-describes the stored value/function/solution definition
-- *`any word`***`(Researchist)`** - a Mathematics/Technologies based term/data type
-that describes the stored value/function/solution definition
+
+- *`any word`***`(Categorizationist)`** - A hyper-technical/high-level term
+
+    that describes the stored value/function/solution definition.
+    
+- *`any word`***`(Researchist)`** - a Mathematics/Technologies based term/data
+
+    type that describes the stored value/function/solution definition.
 
 #### Connectors
-- `of` - Bases the variable/function/solution definition/data type to the
-group on the right.
+
+- `of` - Bases the variable, function, solution definition, or data type on the
+
+    group on the right.
+    
 - `with` - Combines the left group with the right group.
-- `for` - Describes what variable/function/solution definition will use the
-stored value
+
+- `for` - Describes what variable, function, or solution definition will use
+
+    the stored value.
 
 #### MUST ❗
-- Put underscore between each word
-- Uppercase each letter of any name with multi-word abbreviation.
-- Treat multi-word abbreviation names as an entire dataist categorizationist
-word type
-- Use only the categorizationist and researchist word types for variables.
-- Use functionist and dataist word groups for functions
-- Prefix the name of base-script for functions.
-- Uppercase each first letter of each word for base-script function name with
-one or two words.
+
+- Put an underscore between each word.
+
+- Uppercase every letter in any name that contains a multi-word abbreviation.
+
+- Treat multi-word abbreviation names as a single Dataist Categorizationist
+
+    word type.
+
+- Use only Categorizationist and Researchist word types for variables.
+
+- Use Functionist and Dataist word groups for functions.
+
+- For base-scripts with one or two words, uppercase the first letter of each
+
+    word.
+
+- Prefix the base-script name to all of its function names.
+
+- Use return as the second word in a Functionist word group to indicate that
+
+    the function returns data.
 
 #### MUST NOT ❗
-- Have the `for` connector use the name of the base-script it's in.
-- Use `of` to base functionist word group
+
+- Use the `for` connector with the name of the base-script in which it is
+
+    defined.
+
+- Use `of` to base a Functionist word group.
 
 #### MAY ❗
-- Pick any word amount to sufficiently describe variable/function
+
+- Pick any word amount to sufficiently describe variable/function.
+
 - Have functionist group type with the second word `return` to indicate it's
 function returns data.
 
+#### MAY ❗
 
-            ### 📌 **Variables**
-
-            ### 📌 **Functions**
-
-
-#### Examples
-
-```
-one_word = "script"
-
-two_words = "script_path"
-
-three_words = "path_of_script"
-
-four_words = "path_of_python_script_for_LLM"
-
-six_words = "path_of_python_script_with_line_numbers_for_LLM"
-
-seven_words = "directory_path_of_python_scripts_with_line_numbers_for_LLM"
-
-eight_words = "directory_path_of_python_scripts_with_prefix_of_line_numbers_for_LLM"
-```
-
+- Use any number of words necessary to sufficiently describe a variable or function.
 
 #### Examples
 
 Correct ✅
+
 ```
 from Scripts.Logs import *
 from Scripts.System_Prompts import *
 
-OS_initialize_directory("output")
 
 PATH_OF_HOME_USER = OS_return_path_of_home_user()
-
 PATH_OF_STE = f"{PATH_OF_HOME_USER}/Models/all-MiniLM-L6-v2"
+
 
 def Logs_log(input_of_log_type, input_of_log_scope, input_of_log_text):
     pass
+
+
+PATH_OF_HOME_USER = OS_return_path_of_home_user()
+OS_initialize_directory("output")
+
+
+instruction = ""
+IDR = []
+instruction_dependancies = ["abc", "def", "ghi"]
+
+one_word = "script"
+two_words = "script_path"
+three_words = "path_of_script"
+four_words = "path_of_python_script_for_LLM"
+six_words = "path_of_python_script_with_line_numbers_for_LLM"
+seven_words = "directory_path_of_python_scripts_with_line_numbers_for_LLM"
+eight_words = "directory_path_of_python_scripts_with_prefix_of_line_numbers_for_LLM"
 ```
 
 Wrong ❌
@@ -226,12 +321,22 @@ Wrong ❌
 from utils.logs import *
 from utils.system_prompts import *
 
-os.makedirs("output", exist_ok=True)
-
 PATH_OF_SENTENCE_TRANSFORMER_ENCODER = os.path.expanduser("~\Models\all-MiniLM-L6-v2")
 
 def log_for_Logs(input_log_type, input_log_scope, input_log_text):
     pass
+
+os.makedirs("output", exist_ok=True)
+
+Instruction = ""
+instruction_dependancy_resolutions = []
+ID = ["abc", "def", "ghi"]
+
+one_word = "Script"
+two_words = "Script_Path"
+three_words = "LLM_Script_Path"
+four_words = "LLM_python_script_path"
+six_words = "LLM_python_scripts_prefixed_with_line_numbers"
 ```
 
 ---
@@ -618,7 +723,7 @@ Python Property Type:
 Python Functions:
 "Imports", "Built-in", "Base-script", "Whiles", and
 "Condition Functions"
-("Ifs", "Elifs", "Elses", "Ins", "Not Ins", "Trys", "Excepts", and "Raises")
+("Ifs", "Elifs", "Elses", "Ins", "Not Ins", "Trys", "Excepts", "Finallys", and "Raises")
 ```
 
 ### Python Indexing Standard 📋
@@ -689,3 +794,8 @@ Functions that return functions
 Dunder methods
 Using "not" before "in"
 ```
+
+MUST NOT USE IMPORTS:
+pathlib
+sys
+shutil

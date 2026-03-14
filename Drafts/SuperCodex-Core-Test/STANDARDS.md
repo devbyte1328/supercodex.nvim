@@ -6,9 +6,9 @@ Author: devbyte1328
 
 Document: STANDARDS.md
 
-Version: 0.1.2
+Version: 0.1.3
 
-Last Updated: 14-03-2026
+Last Updated: 15-03-2026
 
 ---
 
@@ -34,11 +34,13 @@ disagreement, and endless reinvention. Understanding everything is impossible.
 
 This document makes a simpler choice. It discards the majority of solutions and
 
-bases everything on a single core concept, functions. It is not negotiable. It
+bases everything on three core concepts, variables, functions, and
 
-is set. The adherent must revert to first principles. These standards will not
+initialzations. It is not negotiable. It is set. The adherent must revert to
 
-appeal to everyone, and they are not intended to.
+first principles. These standards will not appeal to everyone, and they are not
+
+intended to.
 
 ---
 

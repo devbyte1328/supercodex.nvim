@@ -87,7 +87,7 @@ RESPONSE_JSON:
 Logs_log("INFO", "MAIN", "Making sure \"output/\" directory exists")
 path_of_output_directory = "output"
 if OS_return_boolean_directory(path_of_output_directory) == False:
-    OS_initalize_directory(path_of_output_directory)
+    OS_initialize_directory(path_of_output_directory)
 
 
 Logs_log("INFO", "MAIN", "Loading input Python script...")

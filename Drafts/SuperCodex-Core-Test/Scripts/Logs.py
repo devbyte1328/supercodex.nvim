@@ -116,7 +116,7 @@ Invalid log scope '{value_error_text}'. Allowed: {available_log_scopes}
 
 directory_path_of_logs = "logs"
 if OS_return_boolean_directory(directory_path_of_logs) == False:
-    OS_initalize_directory(directory_path_of_logs)
+    OS_initialize_directory(directory_path_of_logs)
 if SAVE_LOGS == False:
     loop = 0
     LOG_FILES = OS_return_list_of_directory_files("logs")

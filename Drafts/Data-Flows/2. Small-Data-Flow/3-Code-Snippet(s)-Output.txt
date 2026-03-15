@@ -1,0 +1,25 @@
+'''game.py (code chunk 1/4)
+...
+Line_13|def choose_difficulty():
+Line_14|    print("Select difficulty:")
+Line_15|    print("1 - Easy (1 to 10)")
+Line_16|    print("2 - Medium (1 to 50)")
+Line_17|    print("3 - Hard (1 to 100)")
+...
+'''
+
+User Prompt Input:
+'''
+Add 4th difficulty, "Super Hard", 1 to 1000.
+'''
+
+We are an AI LLM team that is one part of a giant pipeline,
+we only output independent code snippet that is based on the provided context.
+we were told something by an AI LLM who is one level below us in the pipeline,
+he is tasked with passing up to us the context that is relevant to the "User Prompt Input",
+the AI LLM notified us of context that is code lines: 13, 14, 15, 16, 17.
+
+we have to provide an independent code snippet that is based on the provided context,
+we are allowed to overwrite existing code lines if necessary.
+Code Output:
+

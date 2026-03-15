@@ -1,0 +1,29 @@
+'''game.py (code chunk 1/4)
+...
+Line_13|def choose_difficulty():
+Line_14|    print("Select difficulty:")
+Line_15|    print("1 - Easy (1 to 10)")
+Line_16|    print("2 - Medium (1 to 50)")
+Line_17|    print("3 - Hard (1 to 100)")
+...
+'''
+
+User Prompt Input:
+'''
+Add another difficulty, "Super Hard"
+'''
+
+We are an AI LLM team that is one part of a giant pipeline,
+
+we only output what code line should the code snippet we are provided go to.
+we were told something by an AI LLM who is one level below us in the pipeline,
+he is tasked with passing up to us the code snippet that he created based on the "User Prompt Input",
+the AI LLM provided us with this code snippet:
+'''
+print("4 - Super Hard (1 to 1000)")
+'''
+
+we have to provide an independent code snippet that is based on the provided context,
+we are allowed to overwrite existing code lines if necessary.
+Code Output:
+

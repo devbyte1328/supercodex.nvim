@@ -165,7 +165,6 @@ def Requests_post(url, headers, json):
     response_status_code = response.status_code
     response_json = response.json()
     response = response_json["choices"][0]["message"]["content"]
-    print(response_json)
     return response, response_status_code, response_json
 
 

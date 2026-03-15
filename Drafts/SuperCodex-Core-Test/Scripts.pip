@@ -1,4 +1,0 @@
-requests==2.32.5
-sentence_transformers==5.3.0
-numpy==2.4.3
-faiss-cpu==1.13.2

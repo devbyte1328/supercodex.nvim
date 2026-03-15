@@ -3,8 +3,13 @@ import os
 import datetime
 
 
+IMMUTABLE_DIRECTORY_PATH_OF_LOGS = (
+    Python_load_immutables("DIRECTORY_PATH_OF_LOGS")
+)
 IMMUTABLE_LIST_DEBUG = Python_load_immutables("LIST_DEBUG")
-IMMUTABLE_LIST_OF_ERROR_CRITICAL = Python_load_immutables("LIST_OF_ERROR_CRITICAL")
+IMMUTABLE_LIST_OF_ERROR_CRITICAL = (
+    Python_load_immutables("LIST_OF_ERROR_CRITICAL")
+)
 
 
 SAVE_LOGS = False
@@ -19,8 +24,8 @@ LIST_OF_LOG_TYPES = (
     # "LIST_OF_LOG_TYPES" because of sequence dependancy
 )
 LOG_SCOPES = {
-    "MAIN": "Logs/Main.log",
-    "LLM": "Logs/LLM.log"
+    "MAIN": f"{IMMUTABLE_DIRECTORY_PATH_OF_LOGS}/Main.log",
+    "LLM": f"{IMMUTABLE_DIRECTORY_PATH_OF_LOGS}/LLM.log"
 }
 TAGS_OF_LOG_SCOPE = Python_return_tags_of_list(LOG_SCOPES)
 
@@ -50,6 +55,9 @@ Invalid LOG_SCOPES '{LOG_SCOPES}'. LOG_SCOPES cannot be empty
         raise ValueError(text_of_value_error)
 
     loop = 0
+    string_of_logs_directory = (
+        OS_return_last_part_of_path(IMMUTABLE_DIRECTORY_PATH_OF_LOGS)
+    )
     while loop < Python_length(TAGS_OF_LOG_SCOPE):
         tag_for_loop = TAGS_OF_LOG_SCOPE[loop]
         value_for_loop = LOG_SCOPES[tag_for_loop]
@@ -58,11 +66,11 @@ Invalid LOG_SCOPES '{LOG_SCOPES}'. LOG_SCOPES cannot be empty
 Invalid LOG_SCOPES value '{value_for_loop}' for tag '{tag_for_loop}'
 """)
             raise ValueError(text_of_value_error)
-        if "/" in value_for_loop and value_for_loop[:5] != "Logs/":
+        if "/" in value_for_loop and value_for_loop[:5] != f"{IMMUTABLE_DIRECTORY_PATH_OF_LOGS}/":
             text_of_value_error = Python_fstring(f"""
 Invalid LOG_SCOPES path '{value_for_loop}'. Path must be in working directory 
 ''''''
-or inside 'Logs/'
+or inside '{IMMUTABLE_DIRECTORY_PATH_OF_LOGS}/'
 """)
             raise ValueError(text_of_value_error)
         loop += 1
@@ -114,14 +122,15 @@ Invalid log scope '{value_error_text}'. Allowed: {available_log_scopes}
     if input_of_log_type in IMMUTABLE_LIST_OF_ERROR_CRITICAL:
         raise RuntimeError(log_output)
 
-directory_path_of_logs = "logs"
-if OS_return_boolean_directory(directory_path_of_logs) == False:
-    OS_initialize_directory(directory_path_of_logs)
+if OS_return_boolean_directory(IMMUTABLE_DIRECTORY_PATH_OF_LOGS) == False:
+    OS_initialize_directory(IMMUTABLE_DIRECTORY_PATH_OF_LOGS)
 if SAVE_LOGS == False:
     loop = 0
-    LOG_FILES = OS_return_list_of_directory_files("logs")
+    LOG_FILES = OS_return_list_of_directory_files(
+        f"{IMMUTABLE_DIRECTORY_PATH_OF_LOGS}"
+    )
     while loop < Python_length(LOG_FILES):
-        OS_delete_file(f"logs/{LOG_FILES[loop]}")
+        OS_delete_file(f"{IMMUTABLE_DIRECTORY_PATH_OF_LOGS}/{LOG_FILES[loop]}")
         loop += 1
 elif SAVE_LOGS == True:
     pass

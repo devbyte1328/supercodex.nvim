@@ -151,6 +151,8 @@ def OS_return_resolution_path_of_symbolic_link(relative_path_of_symbolic_link):
 def OS_return_function_parameters():
     return os.sys.argv
 
+def OS_return_last_part_of_path(filesystem_path):
+    return os.path.basename(filesystem_path)
 
 import requests
 

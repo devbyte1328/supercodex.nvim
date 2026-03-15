@@ -40,7 +40,7 @@ def Main_return_divide_of_script(script):
     return script_part
 
 
-def Main_post_prompt(prompt):
+def Main_post_prompt():
 
     response, response_status_code, response_json = Requests_post(
         URL_ENDPOINT,
@@ -53,7 +53,7 @@ def Main_post_prompt(prompt):
             "messages": [
                 {
                     "role": "user",
-                    "content": prompt,
+                    "content": USER_PROMPT_FOR_INPUT,
                 }
             ],
         },
@@ -156,7 +156,7 @@ IDR: [{string_of_loop_for_IDR}/
                 USER_PROMPT_FOR_INPUT
             )
         )
-        response, response_status_code, response_json = Main_post_prompt(prompt)
+        response, response_status_code, response_json = Main_post_prompt()
         if "YES" in response:
             log_text = Python_fstring(f"""
 IDR: [{string_of_loop_for_IDR}/
@@ -176,8 +176,8 @@ URL_ENDPOINT:
 LLM_NAME:
 {LLM_NAME}
 
-SYSTEM_PROMPT:
-{system_prompt}
+PROMPT:
+{prompt}
 
 RESPONSE:
 {response}

@@ -9,11 +9,11 @@ import faiss
 from Scripts.Logs import *
 from Scripts.System_Prompts import *
 
-ENCRYPTION_API = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAzNjAzOTBhLTU0NTUtNDM0Ny05NzVlLTE5NTYwODgyYjc2YiIsImV4cCI6MTc3MzM0ODEwMywianRpIjoiYTAzOTU5YjItMDA5ZS00ZmNjLWExYTMtZmY4NTA0ZDMxZjQwIn0.IIr6pjR6FbTi3I8KAb1OH2RM_oU_mKvtRnf-jzc5RRQ"
+ENCRYPTION_API = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAzNjAzOTBhLTU0NTUtNDM0Ny05NzVlLTE5NTYwODgyYjc2YiIsImV4cCI6MTc3NTk1MTM4NiwianRpIjoiNTEyMDlmOTktZGI3Ni00Y2U1LWE5OWQtMDEyMDRjZmU2NWI3In0.UNqIDy_Kz8tuocHdnuBjkD2Q031GPvcUkxpVEp41uBc"
 URL_ENDPOINT = "http://localhost:3000/api/chat/completions"
 LLM_NAME = "gemma:latest"
-SCRIPT_PATH_FOR_INPUT = "input/game.py"
-SCRIPT_PATH_FOR_OUTPUT = "output/game.py"
+SCRIPT_PATH_FOR_INPUT = "Input/Game.py"
+SCRIPT_PATH_FOR_OUTPUT = "Output/Game.py"
 PATH_OF_HOME_USER = OS_return_path_of_home_user()
 PATH_OF_STE = f"{PATH_OF_HOME_USER}/Models/all-MiniLM-L6-v2"
 MAX_NUMBER_OF_CHARACTERS_FOR_DIVIDE = 1250
@@ -25,13 +25,13 @@ def Main_return_divide_of_script(script):
     loop = 0
     script_characters = ""
     script_part = []
-    while loop < length(script):
+    while loop < Python_length(script):
         script_characters += script[loop]
         if (
             Python_length(script_characters) == (
                 MAX_NUMBER_OF_CHARACTERS_FOR_DIVIDE
             )
-            or loop == length(script) - 1
+            or loop == Python_length(script) - 1
         ):
             script_part += [script_characters]
             script_characters = ""
@@ -187,7 +187,7 @@ RESPONSE_STATUS_CODE:
 
 RESPONSE_JSON:
 {response_json}
-"""
+""")
             Logs_log("DEBUG", "LLM", log_text)
             if list_of_instruction_dependencies_with_line_numbers == [""]:
                 list_of_instruction_dependencies_with_line_numbers = []
@@ -204,7 +204,7 @@ RESPONSE_JSON:
 IDR: [{string_of_loop_for_IDR}/
 ''''''
 {STRING_OF_TOTAL_NUMBER_OF_SCRIPT_PARTS}] No instruction dependencies.
-"""
+""")
             Logs_log("INFO", "MAIN", log_text)
             log_text = Python_fstring(f"""
 IDR: [{string_of_loop_for_IDR}/
@@ -229,7 +229,7 @@ RESPONSE_STATUS_CODE:
 
 RESPONSE_JSON:
 {response_json}
-"""
+""")
             Logs_log("DEBUG", "LLM", log_text)
             loop_for_System_Prompts = (
                 loop + 1
@@ -259,7 +259,7 @@ RESPONSE_STATUS_CODE:
 
 RESPONSE_JSON:
 {response_json}
-"""
+""")
             Logs_log("ERROR", "LLM", log_text)
 
     if boolean_of_loop_for_IDR == False:
@@ -269,7 +269,7 @@ IDR: [{string_of_loop_for_IDR}/
 {STRING_OF_TOTAL_NUMBER_OF_SCRIPT_PARTS}] Getting the instruction
 ''''''
  dependencies with line numbers...
-"""
+""")
         Logs_log("INFO", "MAIN", log_text)
         prompt = (
             System_Prompts_return_list_of_instruction_dependencies_with_line_numbers(
@@ -307,7 +307,7 @@ RESPONSE_STATUS_CODE:
 
 RESPONSE_JSON:
 {response_json}
-"""
+""")
         Logs_log("DEBUG", "LLM", log_text)
         log_text = Python_fstring(f"""
 IDR: [{string_of_loop_for_IDR}/
@@ -315,7 +315,7 @@ IDR: [{string_of_loop_for_IDR}/
 {STRING_OF_TOTAL_NUMBER_OF_SCRIPT_PARTS}] Processing raw instruction
 ''''''
  dependencies with line numbers for next system prompt...
-"""
+""")
         Logs_log("INFO", "MAIN", log_text)
         boolean_of_loop_for_IDR = True
 

@@ -3,8 +3,8 @@ import os
 import datetime
 
 
-IMMUTABLE_LIST_DEBUG = load_immutables("LIST_DEBUG")
-IMMUTABLE_LIST_OF_ERROR_CRITICAL = load_immutables("LIST_OF_ERROR_CRITICAL")
+IMMUTABLE_LIST_DEBUG = Python_load_immutables("LIST_DEBUG")
+IMMUTABLE_LIST_OF_ERROR_CRITICAL = Python_load_immutables("LIST_OF_ERROR_CRITICAL")
 
 
 SAVE_LOGS = False
@@ -22,7 +22,7 @@ LOG_SCOPES = {
     "MAIN": "Logs/Main.log",
     "LLM": "Logs/LLM.log"
 }
-TAGS_OF_LOG_SCOPE = Python_tag_list(LOG_SCOPES)
+TAGS_OF_LOG_SCOPE = Python_return_tags_of_list(LOG_SCOPES)
 
 
 def Logs_spaces_for_readability_of_logs(input_log, log_values):
@@ -55,14 +55,14 @@ Invalid LOG_SCOPES '{LOG_SCOPES}'. LOG_SCOPES cannot be empty
         value_for_loop = LOG_SCOPES[tag_for_loop]
         if Python_type(value_for_loop) == Python_type(None):
             text_of_value_error = Python_fstring(f"""
-Invalid LOG_SCOPES value '{value_for_loop}' for key '{tag_for_loop}'
+Invalid LOG_SCOPES value '{value_for_loop}' for tag '{tag_for_loop}'
 """)
             raise ValueError(text_of_value_error)
-        if "/" in value_for_loop and value_for_loop[:5] != "logs/":
+        if "/" in value_for_loop and value_for_loop[:5] != "Logs/":
             text_of_value_error = Python_fstring(f"""
 Invalid LOG_SCOPES path '{value_for_loop}'. Path must be in working directory 
 ''''''
-or inside 'logs/'
+or inside 'Logs/'
 """)
             raise ValueError(text_of_value_error)
         loop += 1

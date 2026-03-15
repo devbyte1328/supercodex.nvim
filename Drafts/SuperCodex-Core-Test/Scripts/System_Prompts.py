@@ -1,4 +1,4 @@
-
+from Standards import *
 
 def System_Prompts_return_definitions_part(
     list_of_instruction_dependencies_with_line_numbers,
@@ -104,7 +104,7 @@ def System_Prompts_return_script_part_with_line_numbers(
         loop += 1
     
     loop = 0
-    line_of_script_part = 0
+    line_number_of_script_part = 0
     list_of_code_lines_for_script_part = []
     while loop < LENGTH_OF_SCRIPT_PART:
         if SCRIPT_PART[loop] == "\n":
@@ -142,10 +142,10 @@ Line_{zeros_for_readability_of_logs}
 ''''''
 {list_of_code_lines_for_script_part[loop]}
 """)
-        if
+        if (
             (loop + 1) < total_of_line_numbers_for_script_part
             and (loop + 1) < Python_length(list_of_code_lines_for_script_part)
-        ): # "+ 1" x 2 because of Python indexing...
+        ): 
             script_part_with_line_numbers += "\n"
         round_of_line_number = round_of_line_number_for_zeros
         loop += 1

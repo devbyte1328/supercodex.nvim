@@ -245,7 +245,7 @@ def System_Prompts_return_boolean_of_instruction_dependencies(
         SCRIPT_PART
     )
 
-    prompt = Python_fstring(f"""
+    system_prompt = Python_fstring(f"""
 {DEFINITIONS_PART}
 ''''''
  {string_of_loop_for_IDR}/{STRING_OF_TOTAL_NUMBER_OF_SCRIPT_PARTS})
@@ -268,7 +268,7 @@ Answer only YES or NO:
 
 """)
     
-    return prompt, script_part_with_line_numbers
+    return system_prompt, script_part_with_line_numbers
 
 
 def System_Prompts_return_list_of_instruction_dependencies_with_line_numbers(
@@ -288,7 +288,7 @@ def System_Prompts_return_list_of_instruction_dependencies_with_line_numbers(
         )
     )
 
-    prompt = Python_string(f"""
+    system_prompt = Python_string(f"""
 {DEFINITIONS_PART}
 ''''''
  {current_number_of_code_chunk}/{total_number_of_code_chunks})
@@ -325,6 +325,6 @@ List:
 
 """)
 
-    return prompt
+    return system_prompt
 
 

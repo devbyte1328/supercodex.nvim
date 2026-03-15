@@ -40,7 +40,7 @@ def Main_return_divide_of_script(script):
     return script_part
 
 
-def Main_post_prompt():
+def Main_post_prompt(system_prompt_for_IDR):
 
     response, response_status_code, response_json = Requests_post(
         URL_ENDPOINT,
@@ -53,7 +53,7 @@ def Main_post_prompt():
             "messages": [
                 {
                     "role": "user",
-                    "content": USER_PROMPT_FOR_INPUT,
+                    "content": system_prompt_for_IDR,
                 }
             ],
         },
@@ -67,8 +67,11 @@ URL_ENDPOINT:
 LLM_NAME:
 {LLM_NAME}
 
-PROMPT:
-{prompt}
+USER_PROMPT_FOR_INPUT:
+{USER_PROMPT_FOR_INPUT}
+
+SYSTEM_PROMPT_FOR_IDR:
+{system_prompt_for_IDR}
 
 RESPONSE:
 {response}
@@ -145,7 +148,7 @@ IDR: [{string_of_loop_for_IDR}/
  Checking for missing instruction dependencies...
 """)
         Logs_log("INFO", "MAIN", log_text)
-        prompt, script_part_with_line_numbers = (
+        system_prompt_for_IDR, script_part_with_line_numbers = (
             System_Prompts_return_boolean_of_instruction_dependencies(
                 list_of_instruction_dependencies_with_line_numbers,
                 SCRIPT_PATH_FOR_INPUT,
@@ -156,7 +159,7 @@ IDR: [{string_of_loop_for_IDR}/
                 USER_PROMPT_FOR_INPUT
             )
         )
-        response, response_status_code, response_json = Main_post_prompt()
+        response, response_status_code, response_json = Main_post_prompt(system_prompt_for_IDR)
         if "YES" in response:
             log_text = Python_fstring(f"""
 IDR: [{string_of_loop_for_IDR}/
@@ -176,8 +179,11 @@ URL_ENDPOINT:
 LLM_NAME:
 {LLM_NAME}
 
-PROMPT:
-{prompt}
+USER_PROMPT_FOR_INPUT:
+{USER_PROMPT_FOR_INPUT}
+
+SYSTEM_PROMPT_FOR_IDR:
+{system_prompt_for_IDR}
 
 RESPONSE:
 {response}
@@ -220,6 +226,9 @@ LLM_NAME:
 
 USER_PROMPT_FOR_INPUT:
 {USER_PROMPT_FOR_INPUT}
+
+SYSTEM_PROMPT_FOR_IDR:
+{system_prompt_for_IDR}
 
 RESPONSE:
 {response}
@@ -271,7 +280,7 @@ IDR: [{string_of_loop_for_IDR}/
  dependencies with line numbers...
 """)
         Logs_log("INFO", "MAIN", log_text)
-        prompt = (
+        system_prompt_for_IDR = (
             System_Prompts_return_list_of_instruction_dependencies_with_line_numbers(
                 list_of_instruction_dependencies_with_line_numbers,
                 SCRIPT_PATH_FOR_INPUT,
@@ -281,7 +290,7 @@ IDR: [{string_of_loop_for_IDR}/
                 USER_PROMPT_FOR_INPUT
             )
         )
-        response, response_status_code, response_json = Main_post_prompt()
+        response, response_status_code, response_json = Main_post_prompt(system_prompt_for_IDR)
         log_text = Python_fstring(f"""
 IDR: [{string_of_loop_for_IDR}/
 ''''''
@@ -298,6 +307,9 @@ LLM_NAME:
 
 USER_PROMPT_FOR_INPUT:
 {USER_PROMPT_FOR_INPUT}
+
+SYSTEM_PROMPT_FOR_IDR:
+{system_prompt_for_IDR}
 
 RESPONSE:
 {response}
@@ -401,6 +413,9 @@ LLM_NAME:
 USER_PROMPT_FOR_INPUT:
 {USER_PROMPT_FOR_INPUT}
 
+SYSTEM_PROMPT_FOR_IDR:
+{system_prompt_for_IDR}
+
 RESPONSE:
 {response}
 
@@ -433,6 +448,9 @@ LLM_NAME:
 
 USER_PROMPT_FOR_INPUT:
 {USER_PROMPT_FOR_INPUT}
+
+SYSTEM_PROMPT_FOR_IDR:
+{system_prompt_for_IDR}
 
 RESPONSE:
 {response}

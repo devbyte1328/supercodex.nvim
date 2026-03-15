@@ -13,7 +13,7 @@ import importlib.util
 def Python_load_immutables(immutable_data):
     spec = importlib.util.spec_from_file_location(
         "immutables",
-        os.path.join(os.path.dirname(__file__), ".immutables.py")
+        os.path.join(os.path.dirname(__file__), ".Immutables.py")
     )
     immutables = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(immutables)
@@ -41,6 +41,9 @@ def Python_list(any_value):
 def Python_tag_list(any_value):
     return dict(any_value)
 
+def Python_return_tags_of_list(any_value):
+    return list(dict(any_value).keys())
+
 def Python_fstring(string_value):
     loop = 0
     temporary_hold_of_single_quotes = ""
@@ -67,7 +70,7 @@ def Python_fstring(string_value):
                     was_single_quotes_found = False
                 elif string_value[loop:loop + 1] == "'":
                     temporary_hold_of_single_quotes += (
-                        string_values[loop:loop + 1]
+                        string_value[loop:loop + 1]
                     )
         elif was_f_string_divider_found == True:
             text_for_output = text_for_output[:-1]
@@ -148,6 +151,8 @@ def OS_return_resolution_path_of_symbolic_link(relative_path_of_symbolic_link):
 def OS_return_function_parameters():
     return os.sys.argv
 
+def OS_return_last_part_of_path(filesystem_path):
+    return os.path.basename(filesystem_path)
 
 import requests
 
@@ -160,6 +165,7 @@ def Requests_post(url, headers, json):
     response_status_code = response.status_code
     response_json = response.json()
     response = response_json["choices"][0]["message"]["content"]
+    print(response_json)
     return response, response_status_code, response_json
 
 

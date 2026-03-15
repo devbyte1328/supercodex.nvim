@@ -1,4 +1,4 @@
-
+from Standards import *
 
 def System_Prompts_return_definitions_part(
     list_of_instruction_dependencies_with_line_numbers,
@@ -104,7 +104,7 @@ def System_Prompts_return_script_part_with_line_numbers(
         loop += 1
     
     loop = 0
-    line_of_script_part = 0
+    line_number_of_script_part = 0
     list_of_code_lines_for_script_part = []
     while loop < LENGTH_OF_SCRIPT_PART:
         if SCRIPT_PART[loop] == "\n":
@@ -142,10 +142,10 @@ Line_{zeros_for_readability_of_logs}
 ''''''
 {list_of_code_lines_for_script_part[loop]}
 """)
-        if
+        if (
             (loop + 1) < total_of_line_numbers_for_script_part
             and (loop + 1) < Python_length(list_of_code_lines_for_script_part)
-        ): # "+ 1" x 2 because of Python indexing...
+        ): 
             script_part_with_line_numbers += "\n"
         round_of_line_number = round_of_line_number_for_zeros
         loop += 1
@@ -245,7 +245,7 @@ def System_Prompts_return_boolean_of_instruction_dependencies(
         SCRIPT_PART
     )
 
-    prompt = Python_fstring(f"""
+    system_prompt = Python_fstring(f"""
 {DEFINITIONS_PART}
 ''''''
  {string_of_loop_for_IDR}/{STRING_OF_TOTAL_NUMBER_OF_SCRIPT_PARTS})
@@ -268,7 +268,7 @@ Answer only YES or NO:
 
 """)
     
-    return prompt, script_part_with_line_numbers
+    return system_prompt, script_part_with_line_numbers
 
 
 def System_Prompts_return_list_of_instruction_dependencies_with_line_numbers(
@@ -288,7 +288,7 @@ def System_Prompts_return_list_of_instruction_dependencies_with_line_numbers(
         )
     )
 
-    prompt = Python_string(f"""
+    system_prompt = Python_string(f"""
 {DEFINITIONS_PART}
 ''''''
  {current_number_of_code_chunk}/{total_number_of_code_chunks})
@@ -325,6 +325,6 @@ List:
 
 """)
 
-    return prompt
+    return system_prompt
 
 

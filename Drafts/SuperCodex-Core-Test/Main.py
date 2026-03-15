@@ -9,11 +9,11 @@ import faiss
 from Scripts.Logs import *
 from Scripts.System_Prompts import *
 
-ENCRYPTION_API = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAzNjAzOTBhLTU0NTUtNDM0Ny05NzVlLTE5NTYwODgyYjc2YiIsImV4cCI6MTc3MzM0ODEwMywianRpIjoiYTAzOTU5YjItMDA5ZS00ZmNjLWExYTMtZmY4NTA0ZDMxZjQwIn0.IIr6pjR6FbTi3I8KAb1OH2RM_oU_mKvtRnf-jzc5RRQ"
+ENCRYPTION_API = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjAzNjAzOTBhLTU0NTUtNDM0Ny05NzVlLTE5NTYwODgyYjc2YiIsImV4cCI6MTc3NTk1MTM4NiwianRpIjoiNTEyMDlmOTktZGI3Ni00Y2U1LWE5OWQtMDEyMDRjZmU2NWI3In0.UNqIDy_Kz8tuocHdnuBjkD2Q031GPvcUkxpVEp41uBc"
 URL_ENDPOINT = "http://localhost:3000/api/chat/completions"
 LLM_NAME = "gemma:latest"
-SCRIPT_PATH_FOR_INPUT = "input/game.py"
-SCRIPT_PATH_FOR_OUTPUT = "output/game.py"
+SCRIPT_PATH_FOR_INPUT = "Input/Game.py"
+SCRIPT_PATH_FOR_OUTPUT = "Output/Game.py"
 PATH_OF_HOME_USER = OS_return_path_of_home_user()
 PATH_OF_STE = f"{PATH_OF_HOME_USER}/Models/all-MiniLM-L6-v2"
 MAX_NUMBER_OF_CHARACTERS_FOR_DIVIDE = 1250
@@ -25,13 +25,13 @@ def Main_return_divide_of_script(script):
     loop = 0
     script_characters = ""
     script_part = []
-    while loop < length(script):
+    while loop < Python_length(script):
         script_characters += script[loop]
         if (
             Python_length(script_characters) == (
                 MAX_NUMBER_OF_CHARACTERS_FOR_DIVIDE
             )
-            or loop == length(script) - 1
+            or loop == Python_length(script) - 1
         ):
             script_part += [script_characters]
             script_characters = ""
@@ -40,7 +40,7 @@ def Main_return_divide_of_script(script):
     return script_part
 
 
-def Main_post_prompt(prompt):
+def Main_post_prompt(system_prompt_for_IDR):
 
     response, response_status_code, response_json = Requests_post(
         URL_ENDPOINT,
@@ -53,7 +53,7 @@ def Main_post_prompt(prompt):
             "messages": [
                 {
                     "role": "user",
-                    "content": prompt,
+                    "content": system_prompt_for_IDR,
                 }
             ],
         },
@@ -67,8 +67,11 @@ URL_ENDPOINT:
 LLM_NAME:
 {LLM_NAME}
 
-PROMPT:
-{prompt}
+USER_PROMPT_FOR_INPUT:
+{USER_PROMPT_FOR_INPUT}
+
+SYSTEM_PROMPT_FOR_IDR:
+{system_prompt_for_IDR}
 
 RESPONSE:
 {response}
@@ -113,8 +116,7 @@ OS_environment("HF_HUB_DISABLE_TELEMETRY", "1")
 OS_environment("HF_HUB_DISABLE_TELEMETRY", "1")
 
 boolean_of_loop_for_IDR = True
-string_of_instruction_dependencies_with_line_numbers = ""
-list_of_instruction_dependencies_with_line_numbers = []
+instruction_dependencies_with_line_numbers = ""
 loop = 0
 boolean_of_loop_for_System_Prompts = False
 loop_for_System_Prompts = 0
@@ -145,9 +147,9 @@ IDR: [{string_of_loop_for_IDR}/
  Checking for missing instruction dependencies...
 """)
         Logs_log("INFO", "MAIN", log_text)
-        prompt, script_part_with_line_numbers = (
+        system_prompt_for_IDR, script_part_with_line_numbers_for_IDR = (
             System_Prompts_return_boolean_of_instruction_dependencies(
-                list_of_instruction_dependencies_with_line_numbers,
+                instruction_dependencies_with_line_numbers,
                 SCRIPT_PATH_FOR_INPUT,
                 SCRIPT_INPUT,
                 LIST_OF_SCRIPT_PARTS[loop],
@@ -156,7 +158,7 @@ IDR: [{string_of_loop_for_IDR}/
                 USER_PROMPT_FOR_INPUT
             )
         )
-        response, response_status_code, response_json = Main_post_prompt(prompt)
+        response, response_status_code, response_json = Main_post_prompt(system_prompt_for_IDR)
         if "YES" in response:
             log_text = Python_fstring(f"""
 IDR: [{string_of_loop_for_IDR}/
@@ -176,8 +178,11 @@ URL_ENDPOINT:
 LLM_NAME:
 {LLM_NAME}
 
-SYSTEM_PROMPT:
-{system_prompt}
+USER_PROMPT_FOR_INPUT:
+{USER_PROMPT_FOR_INPUT}
+
+SYSTEM_PROMPT_FOR_IDR:
+{system_prompt_for_IDR}
 
 RESPONSE:
 {response}
@@ -187,13 +192,8 @@ RESPONSE_STATUS_CODE:
 
 RESPONSE_JSON:
 {response_json}
-"""
+""")
             Logs_log("DEBUG", "LLM", log_text)
-            if list_of_instruction_dependencies_with_line_numbers == [""]:
-                list_of_instruction_dependencies_with_line_numbers = []
-            list_of_instruction_dependencies_with_line_numbers += (
-                [script_part_with_line_numbers]
-            )
             boolean_of_loop_for_IDR = False
             loop_for_System_Prompts = (
                 loop + 1
@@ -204,7 +204,7 @@ RESPONSE_JSON:
 IDR: [{string_of_loop_for_IDR}/
 ''''''
 {STRING_OF_TOTAL_NUMBER_OF_SCRIPT_PARTS}] No instruction dependencies.
-"""
+""")
             Logs_log("INFO", "MAIN", log_text)
             log_text = Python_fstring(f"""
 IDR: [{string_of_loop_for_IDR}/
@@ -221,6 +221,9 @@ LLM_NAME:
 USER_PROMPT_FOR_INPUT:
 {USER_PROMPT_FOR_INPUT}
 
+SYSTEM_PROMPT_FOR_IDR:
+{system_prompt_for_IDR}
+
 RESPONSE:
 {response}
 
@@ -229,7 +232,7 @@ RESPONSE_STATUS_CODE:
 
 RESPONSE_JSON:
 {response_json}
-"""
+""")
             Logs_log("DEBUG", "LLM", log_text)
             loop_for_System_Prompts = (
                 loop + 1
@@ -259,7 +262,7 @@ RESPONSE_STATUS_CODE:
 
 RESPONSE_JSON:
 {response_json}
-"""
+""")
             Logs_log("ERROR", "LLM", log_text)
 
     if boolean_of_loop_for_IDR == False:
@@ -269,19 +272,21 @@ IDR: [{string_of_loop_for_IDR}/
 {STRING_OF_TOTAL_NUMBER_OF_SCRIPT_PARTS}] Getting the instruction
 ''''''
  dependencies with line numbers...
-"""
+""")
         Logs_log("INFO", "MAIN", log_text)
-        prompt = (
+        system_prompt_for_IDR = (
             System_Prompts_return_list_of_instruction_dependencies_with_line_numbers(
-                list_of_instruction_dependencies_with_line_numbers,
+                instruction_dependencies_with_line_numbers,
                 SCRIPT_PATH_FOR_INPUT,
-                list_of_instruction_dependencies_with_line_numbers[loop_for_IDR],
+                script_part_with_line_numbers_for_IDR,
                 string_of_loop_for_IDR,
                 STRING_OF_TOTAL_NUMBER_OF_SCRIPT_PARTS,
                 USER_PROMPT_FOR_INPUT
             )
         )
-        response, response_status_code, response_json = Main_post_prompt()
+        response, response_status_code, response_json = Main_post_prompt(
+            system_prompt_for_IDR
+        )
         log_text = Python_fstring(f"""
 IDR: [{string_of_loop_for_IDR}/
 ''''''
@@ -299,6 +304,9 @@ LLM_NAME:
 USER_PROMPT_FOR_INPUT:
 {USER_PROMPT_FOR_INPUT}
 
+SYSTEM_PROMPT_FOR_IDR:
+{system_prompt_for_IDR}
+
 RESPONSE:
 {response}
 
@@ -307,7 +315,7 @@ RESPONSE_STATUS_CODE:
 
 RESPONSE_JSON:
 {response_json}
-"""
+""")
         Logs_log("DEBUG", "LLM", log_text)
         log_text = Python_fstring(f"""
 IDR: [{string_of_loop_for_IDR}/
@@ -315,20 +323,25 @@ IDR: [{string_of_loop_for_IDR}/
 {STRING_OF_TOTAL_NUMBER_OF_SCRIPT_PARTS}] Processing raw instruction
 ''''''
  dependencies with line numbers for next system prompt...
-"""
+""")
         Logs_log("INFO", "MAIN", log_text)
         boolean_of_loop_for_IDR = True
 
+        # My naming framework broke here lol, terrible naming ahead...
+
+        # Big ol' cleaning process consisting of three while functions.
+        # First, retrieve only the numbers and commas from the response
+        # (LLM output).
         loop = 0
         boolean_of_first_character_of_line_number = False
-        string_of_instruction_dependencies_with_line_numbers = ""
+        string_of_instruction_dependencies_with_line_numbers_for_IDR = ""
         while loop < Python_length(response):
             single_character_of_response = response[loop]
             if (
                 single_character_of_response >= "0"
                 and single_character_of_response <= "9"
             ):
-                string_of_instruction_dependencies_with_line_numbers += (
+                string_of_instruction_dependencies_with_line_numbers_for_IDR += (
                     response[loop]
                 )
                 boolean_of_first_character_of_line_number = True
@@ -336,39 +349,49 @@ IDR: [{string_of_loop_for_IDR}/
                 single_character_of_response == ","
                 and boolean_of_first_character_of_line_number == True
             ):
-                string_of_instruction_dependencies_with_line_numbers += (
+                string_of_instruction_dependencies_with_line_numbers_for_IDR += (
                     response[loop]
                 )
             loop += 1
             
+        # Second cleaning process, retrieve only the numbers.
         loop = 0
-        line_number_of_instruction_dependency = ""
-        list_of_instruction_dependencies_with_line_numbers = []
-        while loop < Python_length(string_of_instruction_dependencies_with_line_numbers):
-            single_character_of_instruction_dependencies_with_line_numbers = (
-                string_of_instruction_dependencies_with_line_numbers[loop:loop + 1]
+        line_numbers_of_instruction_dependency_for_IDR = ""
+        list_of_instruction_dependencies_with_line_numbers_for_IDR = []
+        while loop < Python_length(
+            string_of_instruction_dependencies_with_line_numbers_for_IDR
+        ):
+            single_character_of_instruction_dependencies_with_line_numbers_for_IDR = (
+                string_of_instruction_dependencies_with_line_numbers_for_IDR[loop]
             ) # "+ 1" because of Python indexing...
-            if single_character_of_instruction_dependencies_with_line_numbers != ",":
-                line_number_of_instruction_dependency += single_character_of_instruction_dependencies_with_line_numbers
+            if single_character_of_instruction_dependencies_with_line_numbers_for_IDR != ",":
+                line_numbers_of_instruction_dependency_for_IDR += (
+                    single_character_of_instruction_dependencies_with_line_numbers_for_IDR
+                )
             elif (
-                single_character_of_instruction_dependencies_with_line_numbers == ","
-                and line_number_of_instruction_dependency != ""
+                single_character_of_instruction_dependencies_with_line_numbers_for_IDR == ","
+                and line_numbers_of_instruction_dependency_for_IDR != ""
             ):
-                list_of_instruction_dependencies_with_line_numbers += [Python_integer(line_number_of_instruction_dependency)]
-                line_number_of_instruction_dependency = ""
+                list_of_instruction_dependencies_with_line_numbers_for_IDR += [
+                    Python_integer(line_numbers_of_instruction_dependency_for_IDR)
+                ]
+                line_numbers_of_instruction_dependency_for_IDR = ""
             loop += 1
 
+        # Verify that only numbers were saved, with each step having a larger than previous number.
         loop = 0
         boolean_of_instruction_dependencies_with_line_numbers = True
-        while loop < Python_length(list_of_instruction_dependencies_with_line_numbers):
-            if Python_type(list_of_instruction_dependencies_with_line_numbers[loop]) != Python_data_type_integer:
+        while loop < Python_length(list_of_instruction_dependencies_with_line_numbers_for_IDR):
+            if Python_type(
+                list_of_instruction_dependencies_with_line_numbers_for_IDR[loop]
+            ) != Python_data_type_integer:
                 boolean_of_instruction_dependencies_with_line_numbers = False
                 break
             elif (
                 loop > 0
                 and (
-                    list_of_instruction_dependencies_with_line_numbers[loop]
-                    <= list_of_instruction_dependencies_with_line_numbers[loop - 1]
+                    list_of_instruction_dependencies_with_line_numbers_for_IDR[loop]
+                    <= list_of_instruction_dependencies_with_line_numbers_for_IDR[loop - 1]
                 )
             ):
                 boolean_of_instruction_dependencies_with_line_numbers = False
@@ -401,6 +424,9 @@ LLM_NAME:
 USER_PROMPT_FOR_INPUT:
 {USER_PROMPT_FOR_INPUT}
 
+SYSTEM_PROMPT_FOR_IDR:
+{system_prompt_for_IDR}
+
 RESPONSE:
 {response}
 
@@ -410,13 +436,24 @@ RESPONSE_STATUS_CODE:
 RESPONSE_JSON:
 {response_json}
 
-STRING_OF_INSTRUCTION_DEPENDENCIES_WITH_LINE_NUMBERS:
-{string_of_instruction_dependencies_with_line_numbers}
+STRING_OF_INSTRUCTION_DEPENDENCIES_WITH_LINE_NUMBERS_FOR_IDR:
+{string_of_instruction_dependencies_with_line_numbers_for_IDR}
+
+LIST_OF_INSTRUCTION_DEPENDENCIES_WITH_LINE_NUMBERS_FOR_IDR:
+{list_of_instruction_dependencies_with_line_numbers_for_IDR}
 """)
             Logs_log("DEBUG", "LLM", log_text)
-            list_of_instruction_dependencies_with_line_numbers += (
-                [string_of_instruction_dependencies_with_line_numbers]
-            )
+            if Python_type(
+                instruction_dependencies_with_line_numbers
+            ) == Python_data_type_list:
+                instruction_dependencies_with_line_numbers += (
+                    [string_of_instruction_dependencies_with_line_numbers_for_IDR]
+                )
+            elif instruction_dependencies_with_line_numbers == "":
+            # First time saving instruction dependencies with line numbers
+                instruction_dependencies_with_line_numbers = (
+                    [string_of_instruction_dependencies_with_line_numbers_for_IDR]
+                )
             boolean_of_loop_for_Prompts = True
         elif boolean_of_instruction_dependencies_with_line_numbers == False:
             log_text = Python_fstring(f"""
@@ -434,6 +471,9 @@ LLM_NAME:
 USER_PROMPT_FOR_INPUT:
 {USER_PROMPT_FOR_INPUT}
 
+SYSTEM_PROMPT_FOR_IDR:
+{system_prompt_for_IDR}
+
 RESPONSE:
 {response}
 
@@ -443,14 +483,17 @@ RESPONSE_STATUS_CODE:
 RESPONSE_JSON:
 {response_json}
 
-STRING_OF_INSTRUCTION_DEPENDENCIES_WITH_LINE_NUMBERS:
-{string_of_instruction_dependencies_with_line_numbers}
+STRING_OF_INSTRUCTION_DEPENDENCIES_WITH_LINE_NUMBERS_FOR_IDR:
+{string_of_instruction_dependencies_with_line_numbers_for_IDR}
+
+LIST_OF_INSTRUCTION_DEPENDENCIES_WITH_LINE_NUMBERS_FOR_IDR:
+{list_of_instruction_dependencies_with_line_numbers_for_IDR}
 """)
             Logs_log("ERROR", "LLM", log_text)
 
     loop_for_IDR += 1
     if (loop_for_IDR + 1) == TOTAL_NUMBER_OF_SCRIPT_PARTS:
-        Main = False
+        OS_exit_Main()
 
 
 

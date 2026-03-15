@@ -1,6 +1,15 @@
 # supercodex.nvim
 
-# This project is a work in progress. this README is currently for development purposes:
+### This project is abandoned and scheduled for deletion.
+### 
+### After extensive development, the truth is clear: accuracy improvement in LLMs 
+### is a myth. The idea that they can outperform general enterprise code production 
+### is a bubble.
+###
+### I don’t write open source for entertainment; I write to produce value. 
+### Since this produces none, it's time to move on.
+
+---
 
 SuperCodex is a Neovim plugin that integrates, streamlines, and improves the use of local and cloud-based LLM's for coding purposes.
 

@@ -1,11 +1,51 @@
-'''game.py (code chunk 1/4)
+Definitions:
+'''
+"Instruction Dependency"
+A single line of code that provides the required context for the user prompt input.
+
+"Scope Target"
+A single line of code that is subject to modification based on the passed parameters.
+
+"Direct Modification Scope Target"
+A single line of code that already exists and must be replaced with a newly modified line because it is subject to modification based on the passed parameters.
+
+"Positional Shift Scope Target"
+A single line of code that is pushed downward, leaving an empty line that is then used to insert a new code chunk, because it is subject to modification based on the passed parameters.
+
+"Implementation Process"
+A scope target resolution process intended to apply the new code snippet(s) provided in the parameters.
+'''
+
+Instruction Dependencies:
+'''game.py
 ...
-Line_13|def choose_difficulty():
-Line_14|    print("Select difficulty:")
 Line_15|    print("1 - Easy (1 to 10)")
 Line_16|    print("2 - Medium (1 to 50)")
 Line_17|    print("3 - Hard (1 to 100)")
 ...
+Line_20|    choice = input("Enter 1, 2, or 3: ")
+...
+Line_22|    if choice == "1":
+Line_23|        return 10
+Line_24|    elif choice == "2":
+Line_25|        return 50
+Line_26|    elif choice == "3":
+Line_27|        return 100
+...
+'''
+
+New Code Snippet(s):
+'''Code Snippet #1
+print("4 - Super Hard (1 to 500)")
+'''
+
+'''Code Snippet #2
+choice = input("Enter 1, 2, 3, or 4: ")
+'''
+
+'''Code Snippet #3
+    elif choice == "4":
+        return 500
 '''
 
 User Prompt Input:
@@ -13,17 +53,27 @@ User Prompt Input:
 Add another difficulty, "Super Hard"
 '''
 
-We are an AI LLM team that is one part of a giant pipeline,
-
-we only output what code line should the code snippet we are provided go to.
-we were told something by an AI LLM who is one level below us in the pipeline,
-he is tasked with passing up to us the code snippet that he created based on the "User Prompt Input",
-the AI LLM provided us with this code snippet:
+'''game.py (code chunk 2/4)
+Line_13|def choose_difficulty():
+Line_14|    print("Select difficulty:")
+Line_15|    print("1 - Easy (1 to 10)")
+Line_16|    print("2 - Medium (1 to 50)")
+Line_17|    print("3 - Hard (1 to 100)")
+Line_18|    print()
+Line_19|
+Line_20|    choice = input("Enter 1, 2, or 3: ")
+Line_21|
+Line_22|    if choice == "1":
+Line_23|        return 10
+Line_24|    elif choice == "2":
+Line_25|        return 50
+Line_26|    elif choice == "3":
+Line_27|        return 100
+Line_28|    else:
+Line_29|        print("Invalid choice. Defaulting to Easy.")
+Line_30|        return 10
 '''
-print("4 - Super Hard (1 to 1000)")
-'''
 
-we have to provide an independent code snippet that is based on the provided context,
-we are allowed to overwrite existing code lines if necessary.
-Code Output:
+Is "game.py (code chunk 2/4)" subject to modification based on the available new code snippet(s)?
+Answer only YES or NO:
 

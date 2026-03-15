@@ -1,9 +1,9 @@
 
 
-This works amazing well, but terrifyingly hints at a laborious few months to get this up and running.
 
-Local Mistral-7b.Q8_0 passes through, with a few hiccups that can easily be hardcoded away.
+This fails.
 
-Enterprise level LLMs are assumed the same.
+small tasks of system prompts don't increase the chances of accurate output
+
 
 

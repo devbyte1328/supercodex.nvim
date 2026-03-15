@@ -1,0 +1,33 @@
+AI Agent #1's Code Output:
+'''
+print("4 - Hard (1 to 200)")
+'''
+
+AI Agent #2's Code Output:
+'''
+    elif choice == "4":
+        return 150
+'''
+
+User Prompt Input:
+'''
+Add 4th difficulty, "Super Hard".
+'''
+
+We are an AI LLM team that is one part of a giant pipeline.
+we were given two code outputs by two AI agents and we must pick one and choose, either we pass it through uneditted
+or we change it if something doesn't look right.
+The motivation for our choise is based on is the "User Prompt Input".
+
+Fill in the blank...
+
+AI Agent #1's Code Output:
+'''
+
+'''
+
+AI Agent #2's Code Output:
+'''
+
+'''
+

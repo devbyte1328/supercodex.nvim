@@ -1,0 +1,47 @@
+'''game.py
+import random
+
+
+def print_intro():
+    print("===================================")
+    print("     WELCOME TO GUESS THE NUMBER   ")
+    print("===================================")
+    print("I'm thinking of a number.")
+    print("You have to guess it!")
+    print()
+
+
+def choose_difficulty():
+    print("Select difficulty (Easy, Medium, Hard):")
+    print("1 - Easy (1 to 10)")
+    print("2 - Medium (1 to 50)")
+    print("3 - Hard (1 to 100)")
+    print()
+
+    choice = input("Enter 1, 2, or 3: ")
+
+    if choice == "1":
+        return 10
+    elif choice == "2":
+        return 50
+    elif choice == "3":
+        return 100
+    else:
+        print("Invalid choice. Defaulting to Easy.")
+        return 10
+
+
+def generate_secret_number(max_number):
+    return random.randint(1, max_number)
+'''
+
+User Prompt Input:
+'''
+Add 4th difficulty, "Super Hard".
+'''
+
+We are an AI LLM team that is one part of a giant pipeline.
+our task is to answer "YES" or "NO if we see code that is relevant to the "User Prompt Input".
+Is there code we should tell the next AI LLM in the pipeline about so he can accurately code the solution?
+Answer only YES or NO:
+
